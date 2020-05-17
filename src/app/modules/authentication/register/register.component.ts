@@ -11,5 +11,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  toggleCheckBox(elem) {
+    elem.classList.toggle('checked');
+  }
 }
