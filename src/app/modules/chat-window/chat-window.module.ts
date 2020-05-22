@@ -20,9 +20,9 @@ import { SharedModule } from '../shared/shared.module';
     MessageComponent
   ],
   imports: [
-    SharedModule,
     CommonModule,
-    ChatWindowRoutingModule
+    ChatWindowRoutingModule,
+    SharedModule
   ]
 })
 export class ChatWindowModule { }

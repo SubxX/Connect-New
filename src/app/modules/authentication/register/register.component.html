@@ -44,7 +44,8 @@
           <p class="light-gray-color font-size-15 ml-3">Accept <a class="toc c-pointer text-decoration">Toc</a></p>
         </div>
 
-        <button class="default-btn font-size-25 mt-4 mb-3">SIGN UP</button>
+        <button class="default-btn font-size-25 mt-4 mb-3" (click)="openEmailVerificationPopUp('userObject')">SIGN
+          UP</button>
 
         <p class="light-gray-color font-size-15 fgt-pass c-pointer text-decoration" [routerLink]="['/login']">Already
           have an Account?
