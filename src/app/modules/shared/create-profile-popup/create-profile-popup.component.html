@@ -1,1 +1,66 @@
-<p>create-profile-popup works!</p>
+<div class="create-profile-holder">
+  <div class="left-side position-relative">
+    <div class="left-content p-4 text-white">
+      <p class="font-size-30 font-weight-500 mt-4">PROFILE</p>
+      <p class="font-size-15 mb-5">complete yout profile</p>
+      <img src="assets/popup-assets/create-profile.png" />
+    </div>
+  </div>
+  <div class="right-side p-4">
+
+    <div class="profile-form position-relative">
+
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <div class="profile-pic position-relative">
+          <img src="assets/popup-assets/default-profile-pic.png" />
+          <div class="edit-vector c-pointer">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.1298 0.835595C15.3947 0.570679 15.7092 0.360536 16.0553 0.217164C16.4015 0.0737923 16.7725 2.79135e-09 17.1471 0C17.5217 -2.79135e-09 17.8927 0.0737923 18.2389 0.217164C18.585 0.360536 18.8995 0.570679 19.1644 0.835595C19.4293 1.10051 19.6395 1.41501 19.7828 1.76114C19.9262 2.10727 20 2.47825 20 2.8529C20 3.22755 19.9262 3.59853 19.7828 3.94466C19.6395 4.29079 19.4293 4.60529 19.1644 4.87021L5.54759 18.487L0 20L1.51298 14.4524L15.1298 0.835595Z"
+                fill="#ADADAD" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="default-io-holder position-relative mb-3">
+        <input type="text" class="default-io" placeholder="Firstname" />
+        <i class="fas fa-key"></i>
+      </div>
+
+      <div class="default-io-holder position-relative mb-3">
+        <input type="text" class="default-io" placeholder="Lastname" />
+        <i class="fas fa-key"></i>
+      </div>
+
+      <div class="default-io-holder position-relative mb-3">
+        <input type="text" class="default-io" placeholder="Nickname" />
+        <i class="fas fa-key"></i>
+      </div>
+
+      <div class="mb-4 dd-holder">
+        <div class="default-io-holder position-relative">
+          <input type="text" class="default-io" placeholder="Gender" [disabled]="true"
+            [ngClass]="{'io-active': ddOpen}" />
+          <i class="fas fa-key"></i>
+          <div class="arrow-down c-pointer" (click)="ddOpen =! ddOpen" [ngClass]="{'arrow-active': ddOpen}">
+            <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.44678 1.70253L7.44678 7.70253L13.4468 1.70253" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="options" [ngClass]="{'options-active': ddOpen}">
+          <p class="c-pointer">Male</p>
+          <p class="c-pointer">Female</p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center">
+        <button class="save-btn">SAVE</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

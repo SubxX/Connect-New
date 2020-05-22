@@ -1,0 +1,126 @@
+::ng-deep mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 5px !important;
+}
+
+.create-profile-holder {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.left-side {
+  background: url("../../../../assets/login-rt.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.left-side::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-bg);
+  z-index: -1;
+}
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  background: var(--default-io-bg);
+  border-radius: 50%;
+}
+.profile-pic svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.profile-pic img {
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.save-btn {
+  padding: 10px 50px;
+  border: 1px solid var(--default-btn-bg);
+  background: var(--default-btn-bg);
+  color: var(--plain-white);
+  border-radius: 50px;
+  letter-spacing: 0.1rem;
+  font-size: 16px;
+  box-shadow: var(--btn-box-shadow);
+  outline: none !important;
+}
+.save-btn:hover {
+  background: none;
+  color: var(--default-btn-bg);
+}
+.dd-holder .arrow-down {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+.arrow-down svg {
+  stroke: var(--default-io-icon);
+  transition: 0.1s ease-in-out;
+}
+.dd-holder .arrow-down.arrow-active svg {
+  transform: rotate(-180deg);
+}
+
+.dd-holder .options {
+  position: absolute;
+  width: 100%;
+  display: none;
+  transition: 0.5s;
+}
+.dd-holder .options.options-active {
+  display: block;
+}
+
+.dd-holder .options p {
+  padding: 10px;
+  background: var(--default-io-bg);
+  color: var(--default-io-placeholder);
+  transition: 0.1s ease;
+}
+.dd-holder .options p:hover {
+  background: var(--light-gray);
+  color: #fff !important;
+}
+.dd-holder .options p:nth-child(1) {
+  border-top: 1px solid #cecece2f;
+}
+.dd-holder .options p:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.dd-holder input.io-active {
+  border-radius: 5px 5px 0 0;
+}
+
+@media (max-width: 700px) {
+  .create-profile-holder {
+    grid-template-columns: 1fr;
+  }
+  .left-side {
+    text-align: center;
+  }
+  .left-side * {
+    margin: 0 !important;
+  }
+  .left-side img {
+    display: none;
+  }
+  .left-content {
+    padding: 5px !important;
+  }
+  .left-content p:nth-child(2) {
+    display: none;
+  }
+}

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-profile-popup.component.css']
 })
 export class CreateProfilePopupComponent implements OnInit {
-
+  ddOpen = false;
   constructor() { }
 
   ngOnInit(): void {

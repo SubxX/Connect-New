@@ -10,6 +10,7 @@
   --default-btn-bg: #6eda86;
   --plain-white: #fff;
   --link-color: #0cabe5;
+  --btn-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 html,
@@ -31,7 +32,6 @@ p {
 mat-dialog-container {
   border-radius: 20px !important;
 }
-
 .pall-20 {
   padding: 20px;
 }
