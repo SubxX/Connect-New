@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationPopupComponent } from '../../shared/authentication-popup/authentication-popup.component';
-import { AuthenticationPopupTwoComponent } from '../../shared/authentication-popup-two/authentication-popup-two.component';
 import { CreateProfilePopupComponent } from '../../shared/create-profile-popup/create-profile-popup.component';
 import { ForgotPasswordPopupComponent } from '../../shared/forgot-password-popup/forgot-password-popup.component';
 
@@ -21,12 +20,12 @@ export class LoginComponent implements OnInit {
   toggleCheckBox(elem) {
     elem.classList.toggle('checked');
   }
-  openAuthenticationPopUp(AuthData, type: any) {
-    this.dialog.open(type === 'tf' ? AuthenticationPopupComponent : AuthenticationPopupTwoComponent, {
+  openAuthenticationPopUp(tp: string, mail: string) {
+    this.dialog.open(AuthenticationPopupComponent, {
       width: '680px',
       maxHeight: 'calc(100vh - 20px)',
       disableClose: true,
-      data: AuthData
+      data: { type: tp, email: mail }
     });
   }
 
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   forgotPasswordPopup() {
     this.dialog.open(ForgotPasswordPopupComponent, {
-      width: '680px',
+      width: '400px',
       maxHeight: 'calc(100vh - 20px)'
     });
   }

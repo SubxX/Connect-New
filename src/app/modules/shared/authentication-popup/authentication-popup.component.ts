@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AuthenticationPopupComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
   }

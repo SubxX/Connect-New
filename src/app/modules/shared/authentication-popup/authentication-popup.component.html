@@ -1,14 +1,18 @@
 <div class="popup-holder">
 
   <div class="image-side d-flex justify-content-center align-items-center">
-    <img src="assets/popup-assets/two-factor.png" />
+    <img [src]="data.type=='2FA' ? 'assets/popup-assets/two-factor.png' : 'assets/popup-assets/emailver.png'" />
   </div>
 
   <div class="content-side d-flex justify-content-start align-items-center">
     <div class="font-roboto">
-      <p class="font-size-25 pp-title">Two Factor Authentication</p>
-      <p class="font-size-15 mt-3">A verification code has been sent to your phone.This code will  be valid for 15
-        minutes</p>
+      <p class="font-size-25 pp-title">
+        {{ data.type=='2FA' ?'Two Factor Authentication':'EMAIL Authentication'}}
+      </p>
+      <p class="font-size-15 mt-3">
+        {{data.type=='2FA' ? 'Please enter 2FA code from google authenticator' :
+        'A verification code has been sent to your phone.This code will be valid for 15 minutes'}}
+      </p>
       <div class="popup-io-holder mt-4 w-100">
         <div class="main-io position-relative">
           <div class="key-icon">
@@ -22,7 +26,8 @@
         </div>
         <button class="font-size-20">VERIFY</button>
       </div>
-      <p class="font-size-15 mt-3 resend-text">Haven't received it <a class=" link_color c-pointer">Resend?</a></p>
+      <p class="font-size-15 mt-3 resend-text" *ngIf="data.type!=='2FA'">Haven't received it <a
+          class="link_color c-pointer">Resend?</a></p>
     </div>
   </div>
 
