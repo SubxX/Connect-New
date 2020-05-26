@@ -12,6 +12,21 @@
   --link-color: #0cabe5;
   --btn-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
 }
+
+.lightTheme {
+  --inner-popup-bg: #fff;
+  --inner-popup-text: #a8a8a8;
+  --inner-popup-secondary-text: #cecece;
+  --inner-popup-logo-fill: #727272;
+}
+
+.darkTheme {
+  --inner-popup-bg: #3a3a3a;
+  --inner-popup-text: #fafafa;
+  --inner-popup-secondary-text: #f4f4f4;
+  --inner-popup-logo-fill: #ffff;
+}
+
 html,
 body {
   height: 100%;
@@ -36,6 +51,9 @@ p {
 }
 .font-size-15 {
   font-size: 15px;
+}
+.font-size-18 {
+  font-size: 18px;
 }
 .font-size-20 {
   font-size: 20px;
@@ -91,6 +109,14 @@ p {
   background: none;
   color: var(--default-btn-bg);
 }
+.default-btn.outline-btn {
+  background: none !important;
+  color: var(--default-btn-bg) !important;
+}
+.default-btn.outline-btn:hover {
+  background: var(--default-btn-bg) !important;
+  color: var(--plain-white) !important;
+}
 .check-box {
   width: 20px;
   height: 20px;
@@ -132,7 +158,9 @@ p {
 }
 
 /* GLOBAL POPUP STYLE */
-
+mat-dialog-container {
+  transition: background 0.5s ease-in-out;
+}
 .popup-holder {
   display: grid;
   grid-template-columns: 0.6fr 2fr;
@@ -178,6 +206,18 @@ p {
 .resend-text a:hover {
   text-decoration: underline;
 }
+.stepper-holder .step {
+  margin: 0 7px;
+  width: 15px;
+  height: 15px;
+  background: rgba(110, 218, 134, 0.3);
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.step.active-step {
+  background: var(--default-btn-bg) !important;
+}
+
 @media (max-width: 700px) {
   mat-dialog-container {
     border-radius: 10px !important;

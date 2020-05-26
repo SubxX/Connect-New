@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.forgotPasswordPopup();
   }
 
   toggleCheckBox(elem) {
@@ -44,5 +43,6 @@ export class LoginComponent implements OnInit {
       maxHeight: 'calc(100vh - 20px)'
     });
   }
+
 
 }

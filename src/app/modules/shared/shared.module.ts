@@ -5,13 +5,15 @@ import { AuthenticationPopupComponent } from './authentication-popup/authenticat
 import { CreateProfilePopupComponent } from './create-profile-popup/create-profile-popup.component';
 import { EmailVerificationPopupComponent } from './email-verification-popup/email-verification-popup.component';
 import { ForgotPasswordPopupComponent } from './forgot-password-popup/forgot-password-popup.component';
+import { SecurityTwofaComponent } from './inner-app-popups/security-twofa/security-twofa.component';
 
 @NgModule({
   declarations: [
     AuthenticationPopupComponent,
     CreateProfilePopupComponent,
     EmailVerificationPopupComponent,
-    ForgotPasswordPopupComponent
+    ForgotPasswordPopupComponent,
+    SecurityTwofaComponent
   ],
   imports: [
     CommonModule
@@ -19,12 +21,14 @@ import { ForgotPasswordPopupComponent } from './forgot-password-popup/forgot-pas
   exports: [
     AuthenticationPopupComponent,
     CreateProfilePopupComponent,
-    EmailVerificationPopupComponent
+    EmailVerificationPopupComponent,
+    SecurityTwofaComponent
   ],
   entryComponents: [
     AuthenticationPopupComponent,
     CreateProfilePopupComponent,
-    EmailVerificationPopupComponent
+    EmailVerificationPopupComponent,
+    SecurityTwofaComponent
   ]
 })
 export class SharedModule { }

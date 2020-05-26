@@ -9,6 +9,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ChatWindowComponent } from './chat-window.component';
 import { MessageComponent } from './message/message.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -22,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ChatWindowRoutingModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule
   ]
 })
 export class ChatWindowModule { }
