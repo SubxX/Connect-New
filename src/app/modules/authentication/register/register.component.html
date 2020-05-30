@@ -24,27 +24,59 @@
 
         <p class="title-text-auth-window font-weight-500 mb-5">New Account</p>
 
-        <div class="default-io-holder position-relative mb-4">
-          <input type="text" class="default-io" placeholder="Email" />
-          <i class="fas fa-user"></i>
-        </div>
+        <form [formGroup]="registerForm">
 
-        <div class="default-io-holder position-relative mb-4">
-          <input type="text" class="default-io" placeholder="Password" />
-          <i class="fas fa-key"></i>
-        </div>
+          <div class="text-left root-io-holder position-relative">
+            <div class="default-io-holder position-relative"
+              [class.invalid-io]="registerForm.controls.email.touched && registerForm.controls.email?.errors">
+              <input type="text" class="default-io" placeholder="Email" formControlName="email" />
+              <i class="fas fa-user"></i>
+            </div>
+            <span *ngIf="registerForm.controls.email.touched && registerForm.controls.email.errors?.required"
+              class="io-error-text">
+              Required</span>
+            <span *ngIf="registerForm.controls.email.touched && registerForm.controls.email.errors?.email"
+              class="io-error-text">
+              Provide a valid email</span>
+          </div>
 
-        <div class="default-io-holder position-relative mb-4">
-          <input type="text" class="default-io" placeholder="Password" />
-          <i class="fas fa-key"></i>
-        </div>
 
-        <div class="check-box-holder text-left d-flex align-items-center">
-          <div class="check-box" #checBox (click)="toggleCheckBox(checBox)"></div>
-          <p class="light-gray-color font-size-15 ml-3">Accept <a class="toc c-pointer text-decoration">Toc</a></p>
-        </div>
+          <div class="text-left root-io-holder position-relative">
+            <div class="default-io-holder position-relative"
+              [class.invalid-io]="registerForm.controls.password.touched && registerForm.controls.password?.errors">
+              <input type="text" class="default-io" placeholder="Password" formControlName="password" />
+              <i class="fas fa-key"></i>
+            </div>
+            <span *ngIf="registerForm.controls.password.touched && registerForm.controls.password.errors?.required"
+              class="io-error-text">
+              Required</span>
+          </div>
 
-        <button class="default-btn font-size-25 mt-4 mb-3" (click)="openEmailVerificationPopUp('userObject')">SIGN
+          <div class="text-left root-io-holder position-relative">
+            <div class="default-io-holder position-relative"
+              [class.invalid-io]="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword?.errors">
+              <input type="text" class="default-io" placeholder="Password" formControlName="confirmpassword" />
+              <i class="fas fa-key"></i>
+            </div>
+            <span
+              *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.errors?.required"
+              class="io-error-text">
+              Required</span>
+            <span
+              *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.errors?.ConfirmPassword"
+              class="io-error-text">
+              Passwords doesnot match</span>
+          </div>
+
+          <div class="check-box-holder text-left d-flex align-items-center">
+            <div class="check-box" [class.checked]="acceptTOC" (click)="acceptTOC = !acceptTOC"></div>
+            <p class="light-gray-color font-size-15 ml-3">Accept <a class="toc c-pointer text-decoration">Toc</a></p>
+          </div>
+
+        </form>
+
+        <button class="default-btn font-size-25 mt-4 mb-3" [disabled]="registerForm.status !=='VALID' || !acceptTOC"
+          (click)="register()">SIGN
           UP</button>
 
         <p class="light-gray-color font-size-15 fgt-pass c-pointer text-decoration" [routerLink]="['/login']">Already

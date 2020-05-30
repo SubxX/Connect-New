@@ -23,41 +23,45 @@
         </div>
       </div>
 
-      <div class="default-io-holder position-relative mb-3">
-        <input type="text" class="default-io" placeholder="Firstname" />
-        <i class="fas fa-key"></i>
-      </div>
+      <form [formGroup]="profileForm">
 
-      <div class="default-io-holder position-relative mb-3">
-        <input type="text" class="default-io" placeholder="Lastname" />
-        <i class="fas fa-key"></i>
-      </div>
-
-      <div class="default-io-holder position-relative mb-3">
-        <input type="text" class="default-io" placeholder="Nickname" />
-        <i class="fas fa-key"></i>
-      </div>
-
-      <div class="mb-4 dd-holder">
-        <div class="default-io-holder position-relative">
-          <input type="text" class="default-io" placeholder="Gender" [disabled]="true"
-            [ngClass]="{'io-active': ddOpen}" />
+        <div class="default-io-holder position-relative mb-3">
+          <input type="text" class="default-io" placeholder="Firstname" formControlName="firstname" />
           <i class="fas fa-key"></i>
-          <div class="arrow-down c-pointer" (click)="ddOpen =! ddOpen" [ngClass]="{'arrow-active': ddOpen}">
-            <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.44678 1.70253L7.44678 7.70253L13.4468 1.70253" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+        </div>
+
+        <div class="default-io-holder position-relative mb-3">
+          <input type="text" class="default-io" placeholder="Lastname" formControlName="lastname" />
+          <i class="fas fa-key"></i>
+        </div>
+
+        <div class="default-io-holder position-relative mb-3">
+          <input type="text" class="default-io" placeholder="Nickname" formControlName="nickname" />
+          <i class="fas fa-key"></i>
+        </div>
+
+        <div class="mb-4 dd-holder">
+          <div class="default-io-holder position-relative">
+            <input type="text" class="default-io pointer-none" placeholder="Gender" formControlName="gender"
+              [ngClass]="{'io-active': ddOpen}" />
+            <i class="fas fa-key"></i>
+            <div class="arrow-down c-pointer" (click)="ddOpen =! ddOpen" [ngClass]="{'arrow-active': ddOpen}">
+              <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.44678 1.70253L7.44678 7.70253L13.4468 1.70253" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="options" [ngClass]="{'options-active': ddOpen}">
+            <p class="c-pointer" (click)="selectGender('Male')">Male</p>
+            <p class="c-pointer" (click)="selectGender('Female')">Female</p>
           </div>
         </div>
-        <div class="options" [ngClass]="{'options-active': ddOpen}">
-          <p class="c-pointer">Male</p>
-          <p class="c-pointer">Female</p>
-        </div>
-      </div>
+
+      </form>
 
       <div class="d-flex justify-content-center align-items-center">
-        <button class="save-btn">SAVE</button>
+        <button class="save-btn" (click)="submit()" [disabled]="profileForm.status ==='INVALID'">SAVE</button>
       </div>
 
     </div>

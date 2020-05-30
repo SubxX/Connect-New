@@ -11,23 +11,42 @@
 
         <p class="title-text-auth-window font-weight-500 mb-5">Login Account</p>
 
-        <div class="default-io-holder position-relative mb-4">
-          <input type="text" class="default-io" placeholder="Email" />
-          <i class="fas fa-user"></i>
-        </div>
+        <form [formGroup]="loginForm">
 
-        <div class="default-io-holder position-relative mb-4">
-          <input type="text" class="default-io" placeholder="Password" />
-          <i class="fas fa-key"></i>
-        </div>
+          <div class="root-io-holder position-relative">
+            <div class="default-io-holder position-relative"
+              [class.invalid-io]="loginForm.controls.email.touched && loginForm.controls.email?.errors">
+              <input type="text" class="default-io" placeholder="Email" formControlName="email" />
+              <i class="fas fa-user"></i>
+            </div>
+            <span *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.required"
+              class="io-error-text">
+              Required</span>
+            <span *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.email"
+              class="io-error-text">
+              Provide a valid email</span>
+          </div>
 
-        <div class="check-box-holder text-left d-flex align-items-center">
-          <div class="check-box" #checBox (click)="toggleCheckBox(checBox)"></div>
-          <p class="light-gray-color font-size-15 ml-3">Remember Me</p>
-        </div>
+          <div class="root-io-holder position-relative">
+            <div class="default-io-holder position-relative"
+              [class.invalid-io]="loginForm.controls.password.touched && loginForm.controls.password?.errors">
+              <input type="text" class="default-io" placeholder="Password" formControlName="password" />
+              <i class="fas fa-key"></i>
+            </div>
+            <span *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required"
+              class="io-error-text">
+              Required</span>
+          </div>
 
-        <button class="default-btn font-size-25 mt-4 mb-4"
-          (click)="openAuthenticationPopUp('EMAIL','testemail.gmail.com')">
+          <div class="check-box-holder text-left d-flex align-items-center">
+            <div class="check-box" #checBox (click)="rememberMe =!rememberMe" [class.checked]="rememberMe"></div>
+            <p class="light-gray-color font-size-15 ml-3">Remember Me</p>
+          </div>
+
+        </form>
+
+        <button class="default-btn font-size-25 mt-4 mb-4" [disabled]="loginForm.status === 'INVALID'"
+          (click)="login()">
           SIGN IN
         </button>
 

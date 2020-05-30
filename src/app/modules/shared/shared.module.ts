@@ -6,6 +6,7 @@ import { CreateProfilePopupComponent } from './create-profile-popup/create-profi
 import { EmailVerificationPopupComponent } from './email-verification-popup/email-verification-popup.component';
 import { ForgotPasswordPopupComponent } from './forgot-password-popup/forgot-password-popup.component';
 import { SecurityTwofaComponent } from './inner-app-popups/security-twofa/security-twofa.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { SecurityTwofaComponent } from './inner-app-popups/security-twofa/securi
     SecurityTwofaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AuthenticationPopupComponent,

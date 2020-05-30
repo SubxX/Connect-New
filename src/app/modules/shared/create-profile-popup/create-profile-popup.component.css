@@ -2,6 +2,9 @@
   padding: 0 !important;
   border-radius: 5px !important;
 }
+.pointer-none {
+  pointer-events: none;
+}
 
 .create-profile-holder {
   display: grid;

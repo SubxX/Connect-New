@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -20,7 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     AuthenticationRoutingModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthenticationModule { }

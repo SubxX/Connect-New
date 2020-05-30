@@ -11,6 +11,7 @@
   --plain-white: #fff;
   --link-color: #0cabe5;
   --btn-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+  --error-color: red;
 }
 
 .lightTheme {
@@ -77,13 +78,19 @@ p {
   color: var(--light-gray);
   font-size: 30px;
 }
+.root-io-holder {
+  padding-bottom: 20px;
+}
 .default-io-holder .default-io {
   width: 100%;
   border: none;
   background: var(--default-io-bg);
+  border: 1px solid var(--default-io-bg);
+  color: #333;
   padding: 10px 10px 10px 35px;
   border-radius: 5px;
   outline: none;
+  transition: 0.2s ease-in-out;
 }
 .default-io-holder .default-io::placeholder {
   color: var(--default-io-placeholder);
@@ -95,6 +102,22 @@ p {
   transform: translateY(-50%);
   left: 10px;
 }
+.io-error-text {
+  color: var(--error-color);
+  transition: 0.2s ease;
+  font-size: 13px;
+}
+.invalid-io i {
+  color: var(--error-color);
+}
+.invalid-io .default-io {
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+}
+.invalid-io .default-io::placeholder {
+  color: var(--error-color);
+}
+
 .default-btn {
   border: none;
   background: var(--default-btn-bg);
@@ -181,6 +204,9 @@ mat-dialog-container {
   transform: translateY(-50%);
   left: 10px;
 }
+.popup-io-holder .main-io .key-icon svg {
+  stroke: var(--default-btn-bg);
+}
 .popup-io-holder .main-io input {
   border: 1px solid var(--default-btn-bg);
   background: none;
@@ -191,6 +217,7 @@ mat-dialog-container {
 .popup-io-holder .main-io input::placeholder {
   color: var(--default-io-placeholder);
 }
+
 .popup-io-holder button {
   border-radius: 0 5px 5px 0;
   background-color: var(--default-btn-bg);
@@ -228,7 +255,6 @@ mat-dialog-container {
   }
   .image-side img {
     width: 50%;
-    height: 50%;
   }
   .popup-io-holder {
     grid-template-columns: 1fr;
