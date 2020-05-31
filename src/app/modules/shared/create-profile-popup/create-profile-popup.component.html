@@ -12,37 +12,57 @@
 
       <div class="d-flex justify-content-center align-items-center mb-3">
         <div class="profile-pic position-relative">
-          <img src="assets/popup-assets/default-profile-pic.png" />
-          <div class="edit-vector c-pointer">
+          <img [src]="profilePic ? profilePic : 'assets/popup-assets/default-profile-pic.png'"
+            [class.profile-img-exists]="profilePic" />
+          <div class="edit-vector c-pointer" (click)="file.click()">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M15.1298 0.835595C15.3947 0.570679 15.7092 0.360536 16.0553 0.217164C16.4015 0.0737923 16.7725 2.79135e-09 17.1471 0C17.5217 -2.79135e-09 17.8927 0.0737923 18.2389 0.217164C18.585 0.360536 18.8995 0.570679 19.1644 0.835595C19.4293 1.10051 19.6395 1.41501 19.7828 1.76114C19.9262 2.10727 20 2.47825 20 2.8529C20 3.22755 19.9262 3.59853 19.7828 3.94466C19.6395 4.29079 19.4293 4.60529 19.1644 4.87021L5.54759 18.487L0 20L1.51298 14.4524L15.1298 0.835595Z"
-                fill="#ADADAD" />
+                fill="#fff" />
             </svg>
           </div>
+          <input type="file" hidden #file (change)="onFileChange($event)" />
         </div>
       </div>
 
       <form [formGroup]="profileForm">
 
-        <div class="default-io-holder position-relative mb-3">
-          <input type="text" class="default-io" placeholder="Firstname" formControlName="firstname" />
-          <i class="fas fa-key"></i>
+        <div class="root-io-holder position-relative">
+          <div class="default-io-holder position-relative"
+            [class.invalid-io]="profileForm.controls.firstname.touched && profileForm.controls.firstname?.errors">
+            <input type="text" class="default-io" placeholder="Firstname" formControlName="firstname" />
+            <i class="fas fa-key"></i>
+          </div>
+          <span *ngIf="profileForm.controls.firstname.touched && profileForm.controls.firstname.errors?.required"
+            class="io-error-text">
+            Required</span>
         </div>
 
-        <div class="default-io-holder position-relative mb-3">
-          <input type="text" class="default-io" placeholder="Lastname" formControlName="lastname" />
-          <i class="fas fa-key"></i>
+        <div class="root-io-holder position-relative">
+          <div class="default-io-holder position-relative"
+            [class.invalid-io]="profileForm.controls.lastname.touched && profileForm.controls.lastname?.errors">
+            <input type="text" class="default-io" placeholder="Lastname" formControlName="lastname" />
+            <i class="fas fa-key"></i>
+          </div>
+          <span *ngIf="profileForm.controls.lastname.touched && profileForm.controls.lastname.errors?.required"
+            class="io-error-text">
+            Required</span>
         </div>
 
-        <div class="default-io-holder position-relative mb-3">
-          <input type="text" class="default-io" placeholder="Nickname" formControlName="nickname" />
-          <i class="fas fa-key"></i>
+        <div class="root-io-holder position-relative">
+          <div class="default-io-holder position-relative"
+            [class.invalid-io]="profileForm.controls.nickname.touched && profileForm.controls.nickname?.errors">
+            <input type="text" class="default-io" placeholder="Nickname" formControlName="nickname" />
+            <i class="fas fa-key"></i>
+          </div>
+          <span *ngIf="profileForm.controls.nickname.touched && profileForm.controls.nickname.errors?.required"
+            class="io-error-text">
+            Required</span>
         </div>
 
         <div class="mb-4 dd-holder">
           <div class="default-io-holder position-relative">
-            <input type="text" class="default-io pointer-none" placeholder="Gender" formControlName="gender"
+            <input type="text" readonly class="default-io" placeholder="Gender" formControlName="gender"
               [ngClass]="{'io-active': ddOpen}" />
             <i class="fas fa-key"></i>
             <div class="arrow-down c-pointer" (click)="ddOpen =! ddOpen" [ngClass]="{'arrow-active': ddOpen}">
@@ -61,7 +81,8 @@
       </form>
 
       <div class="d-flex justify-content-center align-items-center">
-        <button class="save-btn" (click)="submit()" [disabled]="profileForm.status ==='INVALID'">SAVE</button>
+        <button class="save-btn" (click)="submit()"
+          [disabled]="profileForm.status ==='INVALID'|| !profilePic ">SAVE</button>
       </div>
 
     </div>

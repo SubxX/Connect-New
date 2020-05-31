@@ -15,10 +15,6 @@ dispatcher.subscribe((data: Event) => {
     case ActionTypes.INIT_USER:
       state.userdetails = data.payload;
       store.next(state);
-      console.log(state);
-      break;
-    case ActionTypes.DESTROY:
-      store.next();
       break;
   }
 });

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  loaderState = new Subject<boolean>();
 
   baseUrl = 'http://localhost:3000/api/';
 
@@ -29,5 +31,17 @@ export class ApiService {
     });
   }
 
+  logOut() {
+    if (localStorage.getItem('authorization')) { localStorage.clear(); }
+    if (sessionStorage.getItem('authorization')) { sessionStorage.clear(); }
+  }
+
+  getToken() {
+    return (localStorage.getItem('authorization') || sessionStorage.getItem('authorization'));
+  }
+
+  loaderStateHandeler(state: boolean) {
+    this.loaderState.next(state);
+  }
 
 }

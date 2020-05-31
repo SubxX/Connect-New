@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { dispatcher } from '../../../Store/app.store';
 import { ActionTypes } from '../../../Store/actions';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AbstractControl } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 
 @Component({
@@ -15,9 +14,8 @@ export class CreateProfilePopupComponent implements OnInit {
   ddOpen = false;
   fname: any;
   profileForm: FormGroup;
-
+  profilePic: string;
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateProfilePopupComponent>,
     private api: ApiService
@@ -32,13 +30,22 @@ export class CreateProfilePopupComponent implements OnInit {
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       nickname: ['', [Validators.required]],
-      gender: ['']
-    }, { validator: this.genderValidator });
+      gender: ['', [Validators.required]]
+    });
   }
 
-  genderValidator(control: AbstractControl) {
-    control.get('gender').value ? control.get('gender').setErrors(null) :
-      control.get('gender').setErrors({ gendererror: true });
+  onFileChange(e) {
+    const formData = new FormData();
+    const img = e.target.files[0];
+    formData.append('files', img);
+    this.api.postRequest('register/uploadprofilepic', formData)
+      .then((pic: any) => this.profilePic = pic.profilepic)
+      .catch(err => console.log(err));
+  }
+
+  selectGender(gender) {
+    this.profileForm.controls.gender.setValue(gender);
+    this.ddOpen = false;
   }
 
   submit() {
@@ -52,9 +59,5 @@ export class CreateProfilePopupComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  selectGender(gender) {
-    this.profileForm.controls.gender.setValue(gender);
-    this.ddOpen = false;
-  }
 
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthguardService } from './services/authguard/authguard.service'
 
 const routes: Routes = [
   {
@@ -8,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: 'chatapp',
-    loadChildren: () => import('./modules/chat-window/chat-window.module').then(m => m.ChatWindowModule)
+    loadChildren: () => import('./modules/chat-window/chat-window.module').then(m => m.ChatWindowModule),
+    canActivate: [AuthguardService]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

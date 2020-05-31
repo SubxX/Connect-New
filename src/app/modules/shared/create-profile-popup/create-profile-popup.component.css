@@ -2,8 +2,19 @@
   padding: 0 !important;
   border-radius: 5px !important;
 }
-.pointer-none {
-  pointer-events: none;
+.io-error-text {
+  font-size: 12px;
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+}
+option {
+  transition: 0.5s;
+  padding: 10px;
+  background: var(--default-io-bg);
+  color: var(--default-io-placeholder);
+  transition: 0.1s ease;
+  border: none !important;
 }
 
 .create-profile-holder {
@@ -33,7 +44,20 @@
   height: 120px;
   background: var(--default-io-bg);
   border-radius: 50%;
+  overflow: hidden;
+  transition: 0.2s ease;
 }
+.profile-pic .edit-vector {
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+}
+.profile-pic:hover {
+  filter: brightness(0.9);
+}
+.profile-pic:hover .edit-vector {
+  opacity: 1;
+}
+
 .profile-pic svg {
   position: absolute;
   top: 50%;
@@ -48,6 +72,12 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.profile-pic img.profile-img-exists {
+  height: 100%;
+  width: 100%;
+}
+
 .save-btn {
   padding: 10px 50px;
   border: 1px solid var(--default-btn-bg);
