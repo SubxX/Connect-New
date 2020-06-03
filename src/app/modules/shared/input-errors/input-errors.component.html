@@ -1,0 +1,10 @@
+<span *ngIf="control.touched && control.errors?.required" class="io-error-text">
+  Required</span>
+<span *ngIf="control.touched && control.errors?.email" class="io-error-text">
+  Provide a valid email</span>
+<span *ngIf="control.touched && control.errors?.ConfirmPassword" class="io-error-text">
+  Passwords doesnot match</span>
+<span *ngIf="control.touched && control.errors?.minlength || control.errors?.maxlength" class="io-error-text">
+  Code must be of 6 digits</span>
+<span *ngIf="control.errors?.invalid" class="io-error-text">
+  INVALID Code please try again</span>

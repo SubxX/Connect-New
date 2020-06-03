@@ -12,6 +12,9 @@
 
         <p class="title-text-auth-window font-weight-500 mb-5">Login Account</p>
 
+        <app-all-alerts [type]="'def-warning'" [isShown]="loginErr || false" (closeClick)="loginErr=false;">
+        </app-all-alerts>
+
         <form [formGroup]="loginForm">
 
           <div class="root-io-holder position-relative">
@@ -20,12 +23,7 @@
               <input type="text" class="default-io" placeholder="Email" formControlName="email" />
               <i class="fas fa-user"></i>
             </div>
-            <span *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.required"
-              class="io-error-text">
-              Required</span>
-            <span *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.email"
-              class="io-error-text">
-              Provide a valid email</span>
+            <app-input-errors [control]="loginForm.controls.email"></app-input-errors>
           </div>
 
           <div class="root-io-holder position-relative">
@@ -34,9 +32,7 @@
               <input type="text" class="default-io" placeholder="Password" formControlName="password" />
               <i class="fas fa-key"></i>
             </div>
-            <span *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required"
-              class="io-error-text">
-              Required</span>
+            <app-input-errors [control]="loginForm.controls.password"></app-input-errors>
           </div>
 
           <div class="check-box-holder text-left d-flex align-items-center">

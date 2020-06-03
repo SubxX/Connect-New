@@ -8,6 +8,8 @@ import { ForgotPasswordPopupComponent } from './forgot-password-popup/forgot-pas
 import { SecurityTwofaComponent } from './inner-app-popups/security-twofa/security-twofa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
+import { AllAlertsComponent } from './all-alerts/all-alerts.component';
+import { InputErrorsComponent } from './input-errors/input-errors.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { LoaderComponent } from './loader/loader.component';
     EmailVerificationPopupComponent,
     ForgotPasswordPopupComponent,
     SecurityTwofaComponent,
-    LoaderComponent
+    LoaderComponent,
+    AllAlertsComponent,
+    InputErrorsComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,9 @@ import { LoaderComponent } from './loader/loader.component';
     CreateProfilePopupComponent,
     EmailVerificationPopupComponent,
     SecurityTwofaComponent,
-    LoaderComponent
+    LoaderComponent,
+    AllAlertsComponent,
+    InputErrorsComponent
   ],
   entryComponents: [
     AuthenticationPopupComponent,

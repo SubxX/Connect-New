@@ -33,9 +33,7 @@
             <input type="text" class="default-io" placeholder="Firstname" formControlName="firstname" />
             <i class="fas fa-key"></i>
           </div>
-          <span *ngIf="profileForm.controls.firstname.touched && profileForm.controls.firstname.errors?.required"
-            class="io-error-text">
-            Required</span>
+          <app-input-errors [control]="profileForm.controls.firstname"></app-input-errors>
         </div>
 
         <div class="root-io-holder position-relative">
@@ -44,9 +42,7 @@
             <input type="text" class="default-io" placeholder="Lastname" formControlName="lastname" />
             <i class="fas fa-key"></i>
           </div>
-          <span *ngIf="profileForm.controls.lastname.touched && profileForm.controls.lastname.errors?.required"
-            class="io-error-text">
-            Required</span>
+          <app-input-errors [control]="profileForm.controls.lastname"></app-input-errors>
         </div>
 
         <div class="root-io-holder position-relative">
@@ -55,9 +51,7 @@
             <input type="text" class="default-io" placeholder="Nickname" formControlName="nickname" />
             <i class="fas fa-key"></i>
           </div>
-          <span *ngIf="profileForm.controls.nickname.touched && profileForm.controls.nickname.errors?.required"
-            class="io-error-text">
-            Required</span>
+          <app-input-errors [control]="profileForm.controls.nickname"></app-input-errors>
         </div>
 
         <div class="mb-4 dd-holder">

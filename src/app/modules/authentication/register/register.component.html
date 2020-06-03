@@ -33,12 +33,7 @@
               <input type="text" class="default-io" placeholder="Email" formControlName="email" />
               <i class="fas fa-user"></i>
             </div>
-            <span *ngIf="registerForm.controls.email.touched && registerForm.controls.email.errors?.required"
-              class="io-error-text">
-              Required</span>
-            <span *ngIf="registerForm.controls.email.touched && registerForm.controls.email.errors?.email"
-              class="io-error-text">
-              Provide a valid email</span>
+            <app-input-errors [control]="registerForm.controls.email"></app-input-errors>
           </div>
 
 
@@ -48,9 +43,7 @@
               <input type="text" class="default-io" placeholder="Password" formControlName="password" />
               <i class="fas fa-key"></i>
             </div>
-            <span *ngIf="registerForm.controls.password.touched && registerForm.controls.password.errors?.required"
-              class="io-error-text">
-              Required</span>
+            <app-input-errors [control]="registerForm.controls.password"></app-input-errors>
           </div>
 
           <div class="text-left root-io-holder position-relative">
@@ -59,14 +52,7 @@
               <input type="text" class="default-io" placeholder="Password" formControlName="confirmpassword" />
               <i class="fas fa-key"></i>
             </div>
-            <span
-              *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.errors?.required"
-              class="io-error-text">
-              Required</span>
-            <span
-              *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.errors?.ConfirmPassword"
-              class="io-error-text">
-              Passwords doesnot match</span>
+            <app-input-errors [control]="registerForm.controls.confirmpassword"></app-input-errors>
           </div>
 
           <div class="check-box-holder text-left d-flex align-items-center">

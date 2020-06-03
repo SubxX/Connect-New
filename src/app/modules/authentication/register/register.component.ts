@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   customValidator(control: AbstractControl) {
-    if (control.get('password').value !== control.get('confirmpassword').value) {
+    if (control.get('confirmpassword').value !== control.get('password').value) {
       control.get('confirmpassword').setErrors({ ConfirmPassword: true });
     } else { return null; }
   }

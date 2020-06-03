@@ -18,8 +18,10 @@ export class InterceptorService implements HttpInterceptor {
       headersConfig['authorization'] = token;
     }
     const clone = req.clone({ setHeaders: headersConfig });
-    return next.handle(clone).pipe(
-      delay(3000),
-      finalize(() => this.api.loaderStateHandeler(false)));
+    return next.handle(clone)
+      .pipe(
+        delay(1000),
+        finalize(() => this.api.loaderStateHandeler(false))
+      );
   }
 }

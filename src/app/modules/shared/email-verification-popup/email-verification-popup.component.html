@@ -23,11 +23,7 @@
         <button class="font-size-20" (click)="verifyEmail()">VERIFY</button>
       </div>
 
-      <span *ngIf="code.touched && code.errors?.required" class="io-error-text">Required Field</span>
-      <span *ngIf="code.touched && code.errors?.minlength || code.errors?.maxlength" class="io-error-text">
-        Code must be of 6 digits</span>
-      <span *ngIf="code.errors?.invalid" class="io-error-text">
-        INVALID Code please try again</span>
+      <app-input-errors [control]="code"></app-input-errors>
 
 
       <p class="font-size-15 mt-1 resend-text">Haven't received it <a class=" link_color c-pointer">Resend?</a></p>

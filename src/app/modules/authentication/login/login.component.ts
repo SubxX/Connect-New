@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   rememberMe = false;
+  loginErr = false;
   constructor(
     private dialog: MatDialog,
     private fb: FormBuilder,
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch((err) => {
+        this.loginErr = true;
         console.log(err);
       });
   }

@@ -1,0 +1,24 @@
+.warning-alert {
+  background: var(--alert-primary-bg);
+  border-left: 10px solid var(--alert-border);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 0.5fr 6fr 0.5fr;
+  margin-bottom: 20px;
+  grid-gap: 10px;
+  padding: 10px;
+  color: var(--alert-text);
+}
+
+.warning-alert > * {
+  justify-self: center;
+  align-self: center;
+}
+.warning-alert > div svg {
+  stroke: var(--alert-svg);
+}
+.warning-alert > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}

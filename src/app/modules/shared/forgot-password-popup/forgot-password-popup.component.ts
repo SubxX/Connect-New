@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Validators, AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password-popup',
@@ -18,21 +19,44 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ForgotPasswordPopupComponent implements OnInit {
   totalSteps = new Array<any>(4);
   step = 1;
-  constructor(private dialogRef: MatDialogRef<ForgotPasswordPopupComponent>) { }
+  resetPassForm: FormGroup;
+
+
+  constructor(
+    private dialogRef: MatDialogRef<ForgotPasswordPopupComponent>,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
-  next() {
-    if (this.step + 1 !== 5) {
-      ++this.step;
-    }
-    if (this.step > 1) { }
-    this.dialogRef.disableClose = true;
+
+  initForm() {
+    this.resetPassForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      newPass: ['', [Validators.required]],
+      conNewpass: ['', [Validators.required]]
+    }, { validator: this.customValidator });
+  }
+
+  customValidator(control: AbstractControl) {
+    if (control.get('conNewpass').value !== control.get('newPass').value) {
+      control.get('conNewpass').setErrors({ ConfirmPassword: true });
+    } else { return null; }
   }
 
   closeDialog() {
     this.dialogRef.close();
   }
+
+  next(step) {
+    this.step++;
+    if (this.step > 1) {
+      this.dialogRef.disableClose = true;
+    }
+  }
+
 
 
 }
