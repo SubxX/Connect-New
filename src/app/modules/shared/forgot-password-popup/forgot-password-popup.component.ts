@@ -19,7 +19,7 @@ import { ApiService } from '../../../services/api.service';
 })
 export class ForgotPasswordPopupComponent implements OnInit {
   totalSteps = new Array<any>(4);
-  step = 3;
+  step = 1;
   resetPassForm: FormGroup;
   errStatus = false;
   errType: string;

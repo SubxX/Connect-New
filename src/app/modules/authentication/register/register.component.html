@@ -40,7 +40,7 @@
           <div class="text-left root-io-holder position-relative">
             <div class="default-io-holder position-relative"
               [class.invalid-io]="registerForm.controls.password.touched && registerForm.controls.password?.errors">
-              <input type="text" class="default-io" placeholder="Password" formControlName="password" />
+              <input type="password" class="default-io" placeholder="Password" formControlName="password" />
               <i class="fas fa-key"></i>
             </div>
             <app-input-errors [control]="registerForm.controls.password"></app-input-errors>
@@ -48,8 +48,10 @@
 
           <div class="text-left root-io-holder position-relative">
             <div class="default-io-holder position-relative"
-              [class.invalid-io]="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword?.errors">
-              <input type="text" class="default-io" placeholder="Password" formControlName="confirmpassword" />
+              [ngClass]="{
+              'valid-pass': registerForm.controls.confirmpassword.touched && !registerForm.controls.confirmpassword?.errors,
+              'invalid-io': registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword?.errors}">
+              <input type="password" class="default-io" placeholder="Password" formControlName="confirmpassword" />
               <i class="fas fa-key"></i>
             </div>
             <app-input-errors [control]="registerForm.controls.confirmpassword"></app-input-errors>

@@ -11,8 +11,8 @@
 
     <div class="left-holder">
 
-      <div class="search-bar-holder">
-        <app-left-search-bar></app-left-search-bar>
+      <div class="search-bar-holder d-flex justify-content-center align-items-center w-100">
+        <app-left-search-bar class="w-100"></app-left-search-bar>
       </div>
 
       <div class="user-list scroll_style">
@@ -26,7 +26,7 @@
     </div>
 
     <div class="right-holder">
-
+      <button (click)="logOut()"> LogOut</button>
     </div>
 
   </div>

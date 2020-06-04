@@ -29,7 +29,7 @@
           <div class="root-io-holder position-relative">
             <div class="default-io-holder position-relative"
               [class.invalid-io]="loginForm.controls.password.touched && loginForm.controls.password?.errors">
-              <input type="text" class="default-io" placeholder="Password" formControlName="password" />
+              <input type="password" class="default-io" placeholder="Password" formControlName="password" />
               <i class="fas fa-key"></i>
             </div>
             <app-input-errors [control]="loginForm.controls.password"></app-input-errors>
