@@ -12,6 +12,9 @@ import { MessageComponent } from './message/message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { SharedModule } from '../shared/shared.module';
+import { LeftSearchBarComponent } from './left-side/left-search-bar/left-search-bar.component';
+import { LeftOnlineUsersComponent } from './left-side/left-online-users/left-online-users.component';
+import { LeftFooterActionsComponent } from './left-side/left-footer-actions/left-footer-actions.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { SharedModule } from '../shared/shared.module';
     ProfileComponent,
     ChatWindowChildComponent,
     WelcomeComponent,
-    MessageComponent
+    MessageComponent,
+    LeftSearchBarComponent,
+    LeftOnlineUsersComponent,
+    LeftFooterActionsComponent
   ],
   imports: [
     CommonModule,

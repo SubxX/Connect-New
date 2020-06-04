@@ -1,6 +1,34 @@
-<app-loader></app-loader>
+<!-- <app-loader></app-loader>
 <div class="holder light">
   {{userData |json }}
   <router-outlet></router-outlet>
 </div>
-<button (click)="logOut()"> LogOut</button>
+<button (click)="logOut()"> LogOut</button> -->
+
+<div class="chat-window-holder d-flex justify-content-center align-items-center">
+
+  <div class="chat-window">
+
+    <div class="left-holder">
+
+      <div class="search-bar-holder">
+        <app-left-search-bar></app-left-search-bar>
+      </div>
+
+      <div class="user-list scroll_style">
+        <app-left-online-users></app-left-online-users>
+      </div>
+
+      <div class="left-footer">
+        <app-left-footer-actions></app-left-footer-actions>
+      </div>
+
+    </div>
+
+    <div class="right-holder">
+
+    </div>
+
+  </div>
+
+</div>

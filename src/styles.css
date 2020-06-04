@@ -17,13 +17,17 @@
   --alert-border: #333;
   --alert-text: #fff;
   --alert-svg: #ededed;
-}
-
-.lightTheme {
+  /*Ligh theme colors*/
   --inner-popup-bg: #fff;
   --inner-popup-text: #a8a8a8;
   --inner-popup-secondary-text: #cecece;
   --inner-popup-logo-fill: #727272;
+
+  --chat-window-bg: linear-gradient(180deg, rgba(23, 44, 232, 0.5) 0%, rgba(97, 15, 64, 0.22) 100%);
+  --left-bg: rgba(78, 33, 141, 0.77);
+  --left-footer-bg: rgba(0, 0, 0, 0.35);
+  --section-separator: rgba(255, 255, 255, 0.452);
+  --user-active-state: #3c048c;
 }
 
 .darkTheme {
@@ -281,3 +285,13 @@ mat-dialog-container {
   }
 }
 /*END OF GLOBAL POPUP STYLE */
+
+.scroll_style::-webkit-scrollbar {
+  width: 5px;
+}
+.scroll_style::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.35);
+}
+.scroll_style::-webkit-scrollbar-thumb {
+  background: #bcbcbc;
+}

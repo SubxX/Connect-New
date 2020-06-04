@@ -1,0 +1,11 @@
+.search-bar {
+  width: 100%;
+  height: 100%;
+}
+.search-bar input {
+  outline: none !important;
+  border: none;
+  width: 100%;
+  padding: 5px 5px 5px 35px;
+  border-radius: 5px;
+}

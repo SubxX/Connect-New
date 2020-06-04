@@ -1,15 +1,18 @@
 .warning-alert {
   background: var(--alert-primary-bg);
   border-left: 10px solid var(--alert-border);
-  border-radius: 10px;
+  border-radius: 5px;
   display: grid;
   grid-template-columns: 0.5fr 6fr 0.5fr;
   margin-bottom: 20px;
   grid-gap: 10px;
-  padding: 10px;
+  padding: 8px;
   color: var(--alert-text);
 }
-
+.alert-icn svg {
+  width: 30px;
+  height: 30px;
+}
 .warning-alert > * {
   justify-self: center;
   align-self: center;
@@ -21,4 +24,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis !important;
+  font-size: 15px;
 }
