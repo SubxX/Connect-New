@@ -11,8 +11,9 @@
       </p>
       <p class="font-size-15 mt-3">
         {{data.type=='2FA' ? 'Please enter 2FA code from google authenticator' :
-        'A verification code has been sent to your phone.This code will be valid for 15 minutes'}}
+        'A verification code has been sent to your Email.This code will be valid for 15 minutes'}}
       </p>
+
       <div class="popup-io-holder mt-4 w-100">
         <div class="main-io position-relative">
           <div class="key-icon">
@@ -22,10 +23,13 @@
                 stroke="#6EDA86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <input type="text" class="w-100" placeholder="Please enter the code" />
+          <input type="text" class="w-100" placeholder="Please enter the code" [formControl]="code" />
         </div>
-        <button class="font-size-20">VERIFY</button>
+
+        <button class="font-size-20" (click)="checkCodeAndLogin()">VERIFY</button>
       </div>
+      <app-input-errors [control]="code"></app-input-errors>
+
       <p class="font-size-15 mt-3 resend-text" *ngIf="data.type!=='2FA'">Haven't received it <a
           class="link_color c-pointer">Resend?</a></p>
     </div>

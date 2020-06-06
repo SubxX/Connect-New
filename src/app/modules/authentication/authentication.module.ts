@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthenticationRoutingModule } from './authentication-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedCommonModule } from '../shared-common/shared-common.module';
+import { SharedPublicModule } from '../shared-public/shared-public.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -20,7 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    SharedModule,
+    SharedCommonModule,
+    SharedPublicModule,
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule

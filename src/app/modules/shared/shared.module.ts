@@ -1,46 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AuthenticationPopupComponent } from './authentication-popup/authentication-popup.component';
-import { CreateProfilePopupComponent } from './create-profile-popup/create-profile-popup.component';
-import { EmailVerificationPopupComponent } from './email-verification-popup/email-verification-popup.component';
-import { ForgotPasswordPopupComponent } from './forgot-password-popup/forgot-password-popup.component';
-import { SecurityTwofaComponent } from './inner-app-popups/security-twofa/security-twofa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoaderComponent } from './loader/loader.component';
-import { AllAlertsComponent } from './all-alerts/all-alerts.component';
-import { InputErrorsComponent } from './input-errors/input-errors.component';
+import { SecurityTwofaComponent } from './security-twofa/security-twofa.component';
+import { CreateProfilePopupComponent } from './create-profile-popup/create-profile-popup.component';
+import { SharedCommonModule } from '../shared-common/shared-common.module';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { SecurityStatusComponent } from './security-status/security-status.component';
 
 @NgModule({
   declarations: [
-    AuthenticationPopupComponent,
     CreateProfilePopupComponent,
-    EmailVerificationPopupComponent,
-    ForgotPasswordPopupComponent,
     SecurityTwofaComponent,
-    LoaderComponent,
-    AllAlertsComponent,
-    InputErrorsComponent
+    UpdateProfileComponent,
+    SecurityStatusComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedCommonModule
   ],
   exports: [
-    AuthenticationPopupComponent,
     CreateProfilePopupComponent,
-    EmailVerificationPopupComponent,
     SecurityTwofaComponent,
-    LoaderComponent,
-    AllAlertsComponent,
-    InputErrorsComponent
+    UpdateProfileComponent,
+    SecurityStatusComponent
   ],
   entryComponents: [
-    AuthenticationPopupComponent,
     CreateProfilePopupComponent,
-    EmailVerificationPopupComponent,
-    SecurityTwofaComponent
+    SecurityTwofaComponent,
+    UpdateProfileComponent,
+    SecurityStatusComponent
   ]
 })
 export class SharedModule { }

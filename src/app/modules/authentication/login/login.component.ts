@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthenticationPopupComponent } from '../../shared/authentication-popup/authentication-popup.component';
-import { ForgotPasswordPopupComponent } from '../../shared/forgot-password-popup/forgot-password-popup.component';
+import { AuthenticationPopupComponent } from '../../shared-public/authentication-popup/authentication-popup.component';
+import { ForgotPasswordPopupComponent } from '../../shared-public/forgot-password-popup/forgot-password-popup.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.api.getToken()) { this.router.navigate(['/chatapp']); }
     this.initLoginform();
   }
 
@@ -37,13 +38,14 @@ export class LoginComponent implements OnInit {
     this.api.postRequest('login', this.loginForm.value)
       .then((data: any) => {
         if (data.token) {
-          this.rememberMe ? localStorage.setItem('authorization', data.token) : sessionStorage.setItem('authorization', data.token);
+          this.api.setToken(this.rememberMe, data.token);
           this.router.navigate(['/chatapp']);
         }
       })
-      .catch((err) => {
-        this.loginErr = true;
-        console.log(err);
+      .catch((err: any) => {
+        if (err.error.auth_method) {
+          this.openAuthenticationPopUp(err.error.auth_method, this.loginForm.controls.email.value);
+        } else { this.loginErr = true; }
       });
   }
 
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit {
       width: '680px',
       maxHeight: 'calc(100vh - 20px)',
       disableClose: true,
-      data: { type: tp, email: mail }
+      data: { type: tp, email: mail, remember: this.rememberMe }
     });
   }
 

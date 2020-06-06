@@ -1,3 +1,45 @@
 <div class="left-footer-holder">
 
+  <div class="theme-switcher position-relative" [class.active-state]="dnToggle"
+    (click)="switchTheme(dnToggle=!dnToggle)">
+    <div class="toggle-state"></div>
+    <span>{{!dnToggle ? 'Day' : 'Night'}}</span>
+  </div>
+
+  <div class="acts-holders d-flex justify-content-end align-items-center">
+
+    <div class="action-btns profile d-flex justify-content-center align-items-center"
+      [routerLink]="['/chatapp/profile']">
+      <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M22 26V23.2222C22 21.7488 21.4469 20.3357 20.4623 19.2939C19.4777 18.252 18.1424 17.6667 16.75 17.6667H6.25C4.85761 17.6667 3.52226 18.252 2.53769 19.2939C1.55312 20.3357 1 21.7488 1 23.2222V26"
+          stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          d="M11.5 12.1111C14.3995 12.1111 16.75 9.6238 16.75 6.55555C16.75 3.48731 14.3995 1 11.5 1C8.6005 1 6.25 3.48731 6.25 6.55555C6.25 9.6238 8.6005 12.1111 11.5 12.1111Z"
+          stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+
+    <div class="action-btns plus d-flex justify-content-center align-items-center">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 1V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M1 11H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+
+    </div>
+
+    <div class="action-btns logout d-flex justify-content-center align-items-center" (click)="logOut()">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14.3334 0.999999H18.7778C19.3672 0.999999 19.9324 1.23413 20.3491 1.65087C20.7659 2.06762 21 2.63285 21 3.22222L21 18.7778C21 19.3671 20.7659 19.9324 20.3491 20.3491C19.9324 20.7659 19.3672 21 18.7778 21H14.3334"
+          stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M6.55566 5.44437L1.00016 10.9999L6.55566 16.5555" stroke="white" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M1.00028 10.9999L14.3335 10.9999" stroke="white" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </div>
+
+  </div>
+
 </div>

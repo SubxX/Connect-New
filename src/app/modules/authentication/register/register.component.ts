@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { EmailVerificationPopupComponent } from '../../shared/email-verification-popup/email-verification-popup.component';
+import { EmailVerificationPopupComponent } from '../../shared-public/email-verification-popup/email-verification-popup.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,11 +17,13 @@ export class RegisterComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private fb: FormBuilder,
-    private api: ApiService
+    private api: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+    if (this.api.getToken()) { this.router.navigate(['/chatapp']); }
   }
 
   initForm() {

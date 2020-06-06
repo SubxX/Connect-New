@@ -1,0 +1,130 @@
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+.profile-card,
+.rewards,
+.security {
+  border-radius: 10px;
+  padding: 20px;
+  background: var(--profile-card-bg);
+  color: var(--left-header-text);
+  box-shadow: var(--window-box-shadow);
+}
+
+.profile-pic-holder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.profile-pic-holder img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.edit-vector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+.profile-pic-holder:hover img {
+  filter: brightness(0.4);
+}
+.profile-pic-holder:hover .edit-vector {
+  opacity: 1;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-gap: 10px;
+}
+.fields p,
+.security-category-holder p {
+  min-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.fields svg {
+  stroke: var(--left-header-text);
+  justify-self: center;
+  cursor: pointer;
+}
+
+.reward-security-holder {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr;
+  grid-gap: 20px;
+}
+.security-category-holder {
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr;
+  grid-gap: 10px;
+}
+.security-category-holder > * {
+  align-self: center;
+}
+.security-category-holder .state {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--error-color);
+}
+.state-handeler {
+  width: 100%;
+  height: 30px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 2px solid var(--error-color);
+}
+.state-handeler::after {
+  content: "OFF";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10%;
+  width: 50%;
+  text-align: center;
+  color: #fff;
+  background: var(--error-color);
+}
+
+.auth-on .state {
+  background: var(--default-btn-bg);
+}
+.auth-on .state-handeler {
+  border: 2px solid var(--default-btn-bg);
+}
+.auth-on .state-handeler::after {
+  content: "ON";
+  background: var(--default-btn-bg);
+  left: 90%;
+  transform: translateY(-50%) translateX(-90%);
+}
+.tab-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 10px 0 10px 0;
+  background: rgba(196, 196, 196, 0.5);
+  color: var(--left-header-text);
+}
+
+@media (max-width: 700px) {
+  .profile-holder {
+    border-radius: 0;
+  }
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -5,6 +5,8 @@ export interface User {
   profilepic: string;
   email: string;
   gender: string;
+  security: { status: boolean, type: string };
+  registrationDate: Date;
 }
 
 export interface Event {

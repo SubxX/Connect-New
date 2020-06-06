@@ -1,17 +1,16 @@
-<!-- <app-loader></app-loader>
+<!--
 <div class="holder light">
   {{userData |json }}
   <router-outlet></router-outlet>
 </div>
 <button (click)="logOut()"> LogOut</button> -->
-
+<app-loader></app-loader>
 <div class="chat-window-holder d-flex justify-content-center align-items-center">
-
   <div class="chat-window">
 
     <div class="left-holder">
 
-      <div class="search-bar-holder d-flex justify-content-center align-items-center w-100">
+      <div class="search-bar-holder d-flex justify-content-center align-items-center">
         <app-left-search-bar class="w-100"></app-left-search-bar>
       </div>
 
@@ -19,14 +18,14 @@
         <app-left-online-users></app-left-online-users>
       </div>
 
-      <div class="left-footer">
-        <app-left-footer-actions></app-left-footer-actions>
+      <div class="left-footer d-flex justify-content-center align-items-center">
+        <app-left-footer-actions class="w-100"></app-left-footer-actions>
       </div>
 
     </div>
 
-    <div class="right-holder">
-      <button (click)="logOut()"> LogOut</button>
+    <div class="right-holder global-dark-white-bg">
+      <router-outlet></router-outlet>
     </div>
 
   </div>

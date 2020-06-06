@@ -13,6 +13,8 @@
   <p class="text-left w-100" *ngIf="type==='CODE_MISMATCH'">Invalid Code</p>
   <p class="text-left w-100" *ngIf="type==='INVALID_EMAIL'">This Email is invalid!</p>
   <p class="text-left w-100" *ngIf="type==='INVALID_STEP'">Invalid step given!</p>
+  <p class="text-left w-100" *ngIf="type==='INVALID_PASSWORD'">Password doesn't match</p>
+  <p class="text-left w-100" *ngIf="type==='INTERNAL_SERVER_ERROR'">internal server erro</p>
 
   <div class="close-icn c-pointer" (click)="closeAlert()">
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">

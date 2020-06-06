@@ -1,0 +1,7 @@
+::ng-deep mat-dialog-container {
+  border-radius: 10px !important;
+  background: #fff !important;
+}
+::ng-deep .io-error-text {
+  position: static !important;
+}

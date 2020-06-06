@@ -4,7 +4,7 @@
   --window-box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2);
   --default-io-bg: #f1f7fa;
   --checkbox-bg: #ededed;
-  --default-io-placeholder: #cecece;
+  --default-io-placeholder: #9b9b9b;
   --overlay-bg: rgba(51, 51, 51, 0.6);
   --default-io-icon: #909090;
   --default-btn-bg: #6eda86;
@@ -22,19 +22,49 @@
   --inner-popup-text: #a8a8a8;
   --inner-popup-secondary-text: #cecece;
   --inner-popup-logo-fill: #727272;
+  --inner-popup-io-placeholder: #cecece;
 
   --chat-window-bg: linear-gradient(180deg, rgba(23, 44, 232, 0.5) 0%, rgba(97, 15, 64, 0.22) 100%);
   --left-bg: rgba(78, 33, 141, 0.77);
   --left-footer-bg: rgba(0, 0, 0, 0.35);
   --section-separator: rgba(255, 255, 255, 0.452);
   --user-active-state: #3c048c;
+
+  --chat-window-footer-options-bg: #9d6ae4;
+  --wtod-dtow: #fff;
+  --dark-mode-btn-secondary-bg: #f2994a;
+  --dark-mode-text: #333;
+
+  --profile-logo-color: #6200ee;
+  --left-header-bg: #ededed;
+  --left-header-text: #333;
+
+  --profile-card-bg: #efefef;
 }
 
 .darkTheme {
+  --default-io-bg: #fff;
   --inner-popup-bg: #3a3a3a;
   --inner-popup-text: #fafafa;
   --inner-popup-secondary-text: #f4f4f4;
   --inner-popup-logo-fill: #ffff;
+  --inner-popup-io-placeholder: #2a2a2a;
+
+  --chat-window-bg: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(50, 50, 50, 0.73) 100%);
+  --left-bg: #000000;
+  --left-footer-bg: rgba(51, 51, 51, 0.5);
+  --user-active-state: #181220;
+
+  --chat-window-footer-options-bg: #333333;
+  --wtod-dtow: #333333;
+  --dark-mode-btn-secondary-bg: #333333;
+  --dark-mode-text: #fff;
+
+  --profile-logo-color: #cdcdcd;
+  --left-header-bg: #1e1e1e;
+  --left-header-text: #fff;
+
+  --profile-card-bg: #000000;
 }
 
 html,
@@ -61,6 +91,9 @@ p {
 }
 .font-weight-500 {
   font-weight: 500;
+}
+.font-size-13 {
+  font-size: 13px;
 }
 .font-size-15 {
   font-size: 15px;
@@ -104,6 +137,10 @@ p {
   outline: none;
   transition: 0.2s ease-in-out;
 }
+.default-io-holder.default-bg .default-io {
+  background: #f1f7fa;
+  border: 1px solid #f1f7fa;
+}
 .default-io-holder .default-io::placeholder {
   color: var(--default-io-placeholder);
 }
@@ -117,14 +154,14 @@ p {
 .io-error-text {
   color: var(--error-color);
   transition: 0.2s ease;
-  font-size: 13px;
+  font-size: 12px;
 }
 .invalid-io i {
   color: var(--error-color);
 }
 .invalid-io .default-io {
   color: var(--error-color);
-  border: 1px solid var(--error-color);
+  border: 1px solid var(--error-color) !important;
 }
 .invalid-io .default-io::placeholder {
   color: var(--error-color);
@@ -267,6 +304,53 @@ mat-dialog-container {
 .step.active-step {
   background: var(--default-btn-bg) !important;
 }
+.common-page-header {
+  width: 100%;
+  min-height: 8%;
+  max-height: 8%;
+  background: var(--left-header-bg);
+  transition: background 0.5s ease-in-out;
+  padding: 10px;
+  border-radius: 0 10px 0 0;
+}
+.page-logo {
+  width: 120px;
+  height: 45px;
+}
+.page-title .page-logo svg {
+  fill: var(--profile-logo-color);
+  width: 100%;
+  height: 100%;
+}
+.page-title p {
+  color: var(--left-header-text);
+}
+
+.global-dark-white-bg {
+  transition: background 0.5s ease-in-out;
+  background: var(--wtod-dtow);
+}
+.page-holder {
+  width: 100%;
+  min-height: 92%;
+  max-height: 92%;
+  border-radius: 0 0 10px 0;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .common-page-header {
+    border-radius: 0;
+    min-height: 6%;
+    max-height: 6%;
+  }
+  .page-holder {
+    min-height: 94%;
+    max-height: 94%;
+    border-radius: 0;
+  }
+}
 
 @media (max-width: 700px) {
   mat-dialog-container {
@@ -303,9 +387,13 @@ mat-dialog-container {
 .scroll_style::-webkit-scrollbar {
   width: 5px;
 }
-.scroll_style::-webkit-scrollbar-track {
+.scroll_style .scroll_style::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.35);
 }
 .scroll_style::-webkit-scrollbar-thumb {
   background: #bcbcbc;
+}
+.scroll_style {
+  scrollbar-color: #bcbcbc rgba(0, 0, 0, 0.35);
+  scrollbar-width: thin;
 }

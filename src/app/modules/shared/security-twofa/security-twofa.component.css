@@ -11,9 +11,14 @@
 .leaf-svg {
   fill: var(--inner-popup-logo-fill);
 }
-
-.my-30px {
-  margin: 35px 0;
+.default-io-holder input::placeholder {
+  color: var(--inner-popup-io-placeholder);
+}
+.root-io-holder {
+  padding-bottom: 20px;
+}
+.my-20px {
+  margin: 20px 0;
 }
 .qr-code-holder {
   max-height: 330px;

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs/internal/Subject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  loaderState = new Subject<boolean>();
+  loaderState = new BehaviorSubject<boolean>(false);
 
   baseUrl = 'http://localhost:3000/api/';
 
@@ -32,16 +32,21 @@ export class ApiService {
   }
 
   logOut() {
-    if (localStorage.getItem('authorization')) { localStorage.clear(); }
-    if (sessionStorage.getItem('authorization')) { sessionStorage.clear(); }
+    if (localStorage.getItem('authorization')) { localStorage.removeItem('authorization'); }
+    if (sessionStorage.getItem('authorization')) { sessionStorage.removeItem('authorization'); }
   }
 
   getToken() {
     return (localStorage.getItem('authorization') || sessionStorage.getItem('authorization'));
   }
 
+  setToken(remember: boolean, token: string) {
+    remember ? localStorage.setItem('authorization', token) : sessionStorage.setItem('authorization', token);
+  }
+
   loaderStateHandeler(state: boolean) {
     this.loaderState.next(state);
   }
+
 
 }
