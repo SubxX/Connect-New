@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-security-status',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecurityStatusComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dialog: MatDialogRef<SecurityStatusComponent>
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  closePopup() {
+    this.dialog.close();
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { EmailVerificationPopupComponent } from '../../shared-public/email-verification-popup/email-verification-popup.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
@@ -15,7 +14,6 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   acceptTOC = false;
   constructor(
-    private dialog: MatDialog,
     private fb: FormBuilder,
     private api: ApiService,
     private router: Router
@@ -49,12 +47,7 @@ export class RegisterComponent implements OnInit {
   }
 
   openEmailVerificationPopUp(userData: any) {
-    this.dialog.open(EmailVerificationPopupComponent, {
-      width: '680px',
-      maxHeight: 'calc(100vh - 20px)',
-      disableClose: true,
-      data: userData
-    });
+    this.api.popupOpener(EmailVerificationPopupComponent, 680, true, userData);
   }
 
 }

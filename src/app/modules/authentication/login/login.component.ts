@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationPopupComponent } from '../../shared-public/authentication-popup/authentication-popup.component';
 import { ForgotPasswordPopupComponent } from '../../shared-public/forgot-password-popup/forgot-password-popup.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit {
   rememberMe = false;
   loginErr = false;
   constructor(
-    private dialog: MatDialog,
     private fb: FormBuilder,
     private api: ApiService,
     private router: Router
@@ -50,20 +48,12 @@ export class LoginComponent implements OnInit {
   }
 
   openAuthenticationPopUp(tp: string, mail: string) {
-    this.dialog.open(AuthenticationPopupComponent, {
-      width: '680px',
-      maxHeight: 'calc(100vh - 20px)',
-      disableClose: true,
-      data: { type: tp, email: mail, remember: this.rememberMe }
-    });
+    this.api.popupOpener(AuthenticationPopupComponent, 680, true, { type: tp, email: mail, remember: this.rememberMe });
   }
 
 
   forgotPasswordPopup() {
-    this.dialog.open(ForgotPasswordPopupComponent, {
-      width: '400px',
-      maxHeight: 'calc(100vh - 20px)'
-    });
+    this.api.popupOpener(ForgotPasswordPopupComponent, 400, false);
   }
 
 

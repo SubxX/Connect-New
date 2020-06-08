@@ -1,1 +1,27 @@
-<p>security-status works!</p>
+<div class="position-relative">
+
+  <div class="cross-btn-holder" (click)="closePopup()">
+    <div class="cross-btn position-relative">
+      <div class="cross-line"></div>
+      <div class="cross-line"></div>
+      <div class="cross-line"></div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center">
+    <img src="assets/popup-assets/tfa-set-success.svg" class="img-fluid" />
+  </div>
+
+  <div class="mt-4">
+    <p class="mb-2 inner-popup-primary-text font-size-20">
+      <span class="font-size-30 font-weight-600">{{data.type}} </span>
+      IS ON
+    </p>
+    <p class="inner-popup-secondary-text font-size-15">
+      If you want to enable {{data.type ==='EMAIL' ? '2FA' : 'EMAIL'}} please turn of
+      {{data.type}} and then try again
+      in case if anything goes wrong feel free to contact us any time.</p>
+  </div>
+
+
+</div>

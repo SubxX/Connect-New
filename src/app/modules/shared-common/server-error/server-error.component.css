@@ -1,0 +1,28 @@
+::ng-deep mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 5px !important;
+  background: var(--inner-popup-bg) !important;
+}
+.inner-popup-primary-text {
+  color: var(--inner-popup-text);
+}
+.inner-popup-secondary-text {
+  color: var(--inner-popup-secondary-text);
+}
+
+.err-popup-header {
+  background: url("../../../../assets/500.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
+  border-radius: 5px 5px 0 0;
+}
+.err-popup-header p {
+  font-size: 70px;
+  color: #fff;
+  font-weight: 600;
+}
+.err-popup-content {
+  padding: 20px 20px 30px 20px;
+}

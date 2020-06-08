@@ -5,10 +5,23 @@
 </div>
 <button (click)="logOut()"> LogOut</button> -->
 <app-loader></app-loader>
-<div class="chat-window-holder d-flex justify-content-center align-items-center">
-  <div class="chat-window">
 
-    <div class="left-holder">
+
+<div class="burger-show-hide d-none" (click)="leftbarToggle(true)">
+  <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="25" height="4" rx="2" fill="#C4C4C4" />
+      <rect y="9" width="25" height="4" rx="2" fill="#C4C4C4" />
+      <rect y="18" width="25" height="4" rx="2" fill="#C4C4C4" />
+    </svg>
+  </div>
+</div>
+
+
+<div class="chat-window-holder d-flex justify-content-center align-items-center">
+  <div class="chat-window" (click)="leftbarToggle(false)">
+
+    <div class="left-holder" (click)="noPropagation($event)">
 
       <div class="search-bar-holder d-flex justify-content-center align-items-center">
         <app-left-search-bar class="w-100"></app-left-search-bar>

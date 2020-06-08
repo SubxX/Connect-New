@@ -7,7 +7,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-chat-window',
@@ -19,8 +19,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   private unSubscriber = new Subject();
   constructor(
     private api: ApiService,
-    private router: Router,
-    private dialog: MatDialog
+    private router: Router
   ) {
     store
       .pipe(takeUntil(this.unSubscriber))
@@ -43,11 +42,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   }
 
   openCreateProfilePopup() {
-    this.dialog.open(CreateProfilePopupComponent, {
-      width: '680px',
-      maxHeight: 'calc(100vh - 20px)',
-      disableClose: true
-    });
+    this.api.popupOpener(CreateProfilePopupComponent, 680, true);
   }
 
   ngOnDestroy() {
@@ -55,4 +50,18 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     this.unSubscriber.complete();
   }
 
+  leftbarToggle(state) {
+    if (state) {
+      document.querySelector('.left-holder').classList.add('left-holder-open');
+      document.querySelector('.chat-window').classList.add('display-overlay');
+      setTimeout(() => { document.querySelector('.chat-window').classList.add('overlay-shown'); }, 250);
+    } else {
+      document.querySelector('.left-holder').classList.remove('left-holder-open');
+      document.querySelector('.chat-window').classList.remove('overlay-shown');
+      setTimeout(() => { document.querySelector('.chat-window').classList.remove('display-overlay'); }, 500);
+    }
+  }
+  noPropagation(e) {
+    e.stopPropagation();
+  }
 }

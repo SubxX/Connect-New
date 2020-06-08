@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ServerErrorComponent } from '../modules/shared-common/server-error/server-error.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class ApiService {
 
   baseUrl = 'http://localhost:3000/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
 
   postRequest(url, payload) {
@@ -48,5 +50,18 @@ export class ApiService {
     this.loaderState.next(state);
   }
 
+  popupOpener(component: any, wdth: number, closable: boolean, passedData?: any) {
+    const opts: any = {
+      width: `${wdth}px`,
+      disableClose: closable,
+      maxHeight: 'calc(100vh - 20px)',
+      data: passedData ? passedData : {}
+    };
+    this.dialog.open(component, opts);
+  }
+
+  serverErrorPopup() {
+    this.dialog.open(ServerErrorComponent, { width: '330px', maxHeight: 'calc(100vh - 20px)' });
+  }
 
 }

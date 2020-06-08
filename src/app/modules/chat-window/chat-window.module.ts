@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { SharedModule } from '../shared/shared.module';
+
 import { LeftSearchBarComponent } from './left-side/left-search-bar/left-search-bar.component';
 import { LeftOnlineUsersComponent } from './left-side/left-online-users/left-online-users.component';
 import { LeftFooterActionsComponent } from './left-side/left-footer-actions/left-footer-actions.component';

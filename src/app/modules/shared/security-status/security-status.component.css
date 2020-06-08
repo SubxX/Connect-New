@@ -1,0 +1,42 @@
+::ng-deep mat-dialog-container {
+  border-radius: 5px !important;
+  background: var(--inner-popup-bg) !important;
+}
+.inner-popup-primary-text {
+  color: var(--inner-popup-text);
+}
+.inner-popup-secondary-text {
+  color: var(--inner-popup-secondary-text);
+}
+.cross-btn-holder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: 0.5s ease-in-out;
+}
+.cross-btn {
+  width: 20px;
+  height: 30px;
+  cursor: pointer;
+}
+.cross-line {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 50px;
+  margin: 5px 0;
+  transition: 0.3s ease-in-out;
+}
+.cross-line:last-child {
+  width: 60%;
+}
+
+.cross-btn-holder:hover {
+  transform: rotate(-90deg);
+}
+.cross-btn-holder:hover .cross-line:nth-child(1) {
+  width: 60%;
+}
+.cross-btn-holder:hover .cross-line:last-child {
+  width: 100%;
+}

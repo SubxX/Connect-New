@@ -1,3 +1,12 @@
+.burger-show-hide {
+  height: 8%;
+  position: fixed;
+  top: 0;
+  left: 30px;
+}
+.burger-show-hide-inner {
+  height: 100%;
+}
 .chat-window-holder {
   width: 100%;
   height: 100vh;
@@ -11,6 +20,19 @@
   border-radius: 10px;
   display: grid;
   grid-template-columns: 30% 70%;
+}
+
+.chat-window::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.37);
+  display: none;
+  opacity: 0;
+  transition: 0.5s ease-in-out;
 }
 
 .left-holder {
@@ -38,12 +60,16 @@
 }
 .search-bar-holder {
   padding: 10px;
-  border-bottom: 2px solid var(--section-separator);
+  background: var(--left-footer-bg);
 }
 .right-holder {
   border-radius: 0 10px 10px 0;
 }
+
 @media (max-width: 1024px) {
+  .burger-show-hide {
+    display: block !important;
+  }
   .chat-window {
     width: 100vw;
     height: 100vh;
@@ -60,5 +86,20 @@
     height: 100vh;
     transform: translateX(-100%);
     transition: 0.5s ease-in-out;
+  }
+
+  .display-overlay.chat-window::after {
+    display: block;
+  }
+  .overlay-shown.chat-window::after {
+    opacity: 1;
+  }
+  .left-holder.left-holder-open {
+    transform: translateX(0);
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .left-holder {
+    width: 50%;
   }
 }

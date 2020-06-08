@@ -11,6 +11,7 @@
   background: var(--profile-card-bg);
   color: var(--left-header-text);
   box-shadow: var(--window-box-shadow);
+  transition: background 0.5s ease-in-out;
 }
 
 .profile-pic-holder {
@@ -79,35 +80,36 @@
   background: var(--error-color);
 }
 .state-handeler {
-  width: 100%;
-  height: 30px;
-  border-radius: 2px;
+  width: 65px;
+  height: 26px;
+  border-radius: 50px;
   cursor: pointer;
-  border: 2px solid var(--error-color);
+  background: #cecece;
 }
 .state-handeler::after {
-  content: "OFF";
+  content: "";
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   left: 10%;
-  width: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 18px;
   text-align: center;
-  color: #fff;
-  background: var(--error-color);
+  background: var(--plain-white);
+  border-radius: 50px;
+  transition: 0.5s ease-in-out;
 }
 
 .auth-on .state {
   background: var(--default-btn-bg);
 }
 .auth-on .state-handeler {
-  border: 2px solid var(--default-btn-bg);
+  background: #2196f3;
 }
 .auth-on .state-handeler::after {
-  content: "ON";
-  background: var(--default-btn-bg);
-  left: 90%;
-  transform: translateY(-50%) translateX(-90%);
+  background: var(--plain-white);
+  left: 80%;
+  transform: translateY(-50%) translateX(-80%);
 }
 .tab-title {
   position: absolute;

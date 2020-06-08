@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SecurityTwofaComponent } from '../../shared/security-twofa/security-twofa.component';
 import { ApiService } from '../../../services/api.service';
-import { MatDialog } from '@angular/material/dialog';
 import { store, dispatcher } from '../../../Store/app.store';
 import { User } from '../../../Store/models';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ActionTypes } from 'src/app/Store/actions';
+import { SecurityStatusComponent } from '../../shared/security-status/security-status.component';
 
 
 @Component({
@@ -26,10 +26,7 @@ import { ActionTypes } from 'src/app/Store/actions';
 export class ProfileComponent implements OnInit, OnDestroy {
   private unSubscriber = new Subject();
   currentUser: User;
-  constructor(private api: ApiService, private dialog: MatDialog) {
-  }
-
-  ngOnInit(): void {
+  constructor(private api: ApiService) {
     store
       .pipe(takeUntil(this.unSubscriber))
       .subscribe(({ userdetails }) => {
@@ -39,16 +36,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnInit(): void {
+  }
+
   setTfaPopup(tp) {
     if (this.currentUser.security.type === 'NONE') {
-      this.dialog.open(SecurityTwofaComponent, {
-        width: '400px',
-        maxHeight: 'calc(100vh - 20px)',
-        disableClose: false,
-        data: { type: tp, email: this.currentUser.email }
-      });
-    } else if (this.currentUser.security.type === tp) {
-      this.removeSecurity();
+      this.api.popupOpener(SecurityTwofaComponent, 400, false, { type: tp, email: this.currentUser.email });
+    } else {
+      this.currentUser.security.type === tp ? this.removeSecurity() : this.securityMethodState(this.currentUser.security.type);
     }
   }
 
@@ -64,6 +59,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     dispatcher.next({ type: ActionTypes.UPDATE_SECURITY, payload: data });
   }
 
+  securityMethodState(tp) {
+    this.api.popupOpener(SecurityStatusComponent, 330, false, { type: tp });
+  }
 
   ngOnDestroy() {
     this.unSubscriber.next();
