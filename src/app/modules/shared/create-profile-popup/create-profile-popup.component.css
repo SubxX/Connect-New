@@ -2,6 +2,7 @@
   padding: 0 !important;
   border-radius: 5px !important;
 }
+
 .io-error-text {
   position: absolute;
   bottom: 1px;
@@ -118,7 +119,7 @@ option {
 
 .dd-holder .options p {
   padding: 10px;
-  background: var(--default-io-bg);
+  background: #f1f7fa;
   color: var(--default-io-placeholder);
   transition: 0.1s ease;
 }

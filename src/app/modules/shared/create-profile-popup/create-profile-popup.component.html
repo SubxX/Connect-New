@@ -28,7 +28,7 @@
       <form [formGroup]="profileForm">
 
         <div class="root-io-holder position-relative">
-          <div class="default-io-holder position-relative"
+          <div class="default-io-holder position-relative default-bg"
             [class.invalid-io]="profileForm.controls.firstname.touched && profileForm.controls.firstname?.errors">
             <input type="text" class="default-io" placeholder="Firstname" formControlName="firstname" />
             <i class="fas fa-key"></i>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="root-io-holder position-relative">
-          <div class="default-io-holder position-relative"
+          <div class="default-io-holder position-relative default-bg"
             [class.invalid-io]="profileForm.controls.lastname.touched && profileForm.controls.lastname?.errors">
             <input type="text" class="default-io" placeholder="Lastname" formControlName="lastname" />
             <i class="fas fa-key"></i>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="root-io-holder position-relative">
-          <div class="default-io-holder position-relative"
+          <div class="default-io-holder position-relative default-bg"
             [class.invalid-io]="profileForm.controls.nickname.touched && profileForm.controls.nickname?.errors">
             <input type="text" class="default-io" placeholder="Nickname" formControlName="nickname" />
             <i class="fas fa-key"></i>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="mb-4 dd-holder">
-          <div class="default-io-holder position-relative">
+          <div class="default-io-holder position-relative default-bg">
             <input type="text" readonly class="default-io" placeholder="Gender" formControlName="gender"
               [ngClass]="{'io-active': ddOpen}" />
             <i class="fas fa-key"></i>

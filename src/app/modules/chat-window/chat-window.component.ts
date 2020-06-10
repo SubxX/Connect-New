@@ -34,15 +34,14 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   initUser() {
     this.api.getRequest('login/getuserdetails').then((data: User) => {
       if (!data.name && !data.nickname) {
-        this.openCreateProfilePopup();
+        this.api.popupOpener(CreateProfilePopupComponent, 680, true);
       } else {
         dispatcher.next({ type: ActionTypes.INIT_USER, payload: data });
       }
-    }).catch((err) => { this.router.navigate(['/login']); });
-  }
-
-  openCreateProfilePopup() {
-    this.api.popupOpener(CreateProfilePopupComponent, 680, true);
+    }).catch((err) => {
+      console.log(err);
+      this.api.logOut();
+    });
   }
 
   ngOnDestroy() {
@@ -61,6 +60,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
       setTimeout(() => { document.querySelector('.chat-window').classList.remove('display-overlay'); }, 500);
     }
   }
+
   noPropagation(e) {
     e.stopPropagation();
   }

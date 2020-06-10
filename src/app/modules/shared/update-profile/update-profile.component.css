@@ -1,0 +1,10 @@
+::ng-deep mat-dialog-container {
+  background: var(--inner-popup-bg) !important;
+  border-radius: 5px !important;
+}
+.inner-popup-primary-text {
+  color: var(--inner-popup-text);
+}
+.inner-popup-secondary-text {
+  color: var(--inner-popup-secondary-text);
+}

@@ -6,13 +6,15 @@ import { InputErrorsComponent } from './input-errors/input-errors.component';
 import { LoaderComponent } from './loader/loader.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationPopupComponent } from './confirmation-popup/confirmation-popup.component';
 
 @NgModule({
   declarations: [
     AllAlertsComponent,
     InputErrorsComponent,
     LoaderComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    ConfirmationPopupComponent
   ],
   imports: [
     CommonModule,
@@ -23,13 +25,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AllAlertsComponent,
     InputErrorsComponent,
     LoaderComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    ConfirmationPopupComponent
   ],
   entryComponents: [
     AllAlertsComponent,
     InputErrorsComponent,
     LoaderComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    ConfirmationPopupComponent
   ]
 })
 export class SharedCommonModule { }

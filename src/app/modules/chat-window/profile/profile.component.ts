@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ActionTypes } from 'src/app/Store/actions';
 import { SecurityStatusComponent } from '../../shared/security-status/security-status.component';
-
+import { UpdateProfileComponent } from '../../shared/update-profile/update-profile.component';
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +26,7 @@ import { SecurityStatusComponent } from '../../shared/security-status/security-s
 export class ProfileComponent implements OnInit, OnDestroy {
   private unSubscriber = new Subject();
   currentUser: User;
+
   constructor(private api: ApiService) {
     store
       .pipe(takeUntil(this.unSubscriber))
@@ -37,13 +38,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // this.api.popupOpener(UpdateProfileComponent, 400, false);
   }
 
   setTfaPopup(tp) {
     if (this.currentUser.security.type === 'NONE') {
       this.api.popupOpener(SecurityTwofaComponent, 400, false, { type: tp, email: this.currentUser.email });
     } else {
-      this.currentUser.security.type === tp ? this.removeSecurity() : this.securityMethodState(this.currentUser.security.type);
+      if (this.currentUser.security.type === tp) {
+        this.api.confirmationPopup().subscribe(state => {
+          if (state) { this.removeSecurity(); } else { return; }
+        });
+      } else { this.securityMethodState(this.currentUser.security.type); }
     }
   }
 
@@ -62,6 +68,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   securityMethodState(tp) {
     this.api.popupOpener(SecurityStatusComponent, 330, false, { type: tp });
   }
+
+
+
 
   ngOnDestroy() {
     this.unSubscriber.next();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { dispatcher } from '../../../Store/app.store';
 import { ActionTypes } from '../../../Store/actions';
 import { MatDialogRef } from '@angular/material/dialog';

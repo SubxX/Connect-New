@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { ApiService } from '../../../../services/api.service';
 export class LeftFooterActionsComponent implements OnInit {
   dnToggle = false;
   constructor(
-    private router: Router,
     private api: ApiService
   ) { }
 
@@ -21,7 +19,6 @@ export class LeftFooterActionsComponent implements OnInit {
 
   logOut() {
     this.api.logOut();
-    this.router.navigate(['/login']);
   }
 
   switchTheme(state?: boolean) {

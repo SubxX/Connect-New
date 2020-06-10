@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ServerErrorComponent } from '../modules/shared-common/server-error/server-error.component';
+import { ConfirmationPopupComponent } from '../modules/shared-common/confirmation-popup/confirmation-popup.component';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class ApiService {
 
   baseUrl = 'http://localhost:3000/api/';
 
-  constructor(private http: HttpClient, private dialog: MatDialog) { }
+  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
 
   postRequest(url, payload) {
@@ -36,6 +38,7 @@ export class ApiService {
   logOut() {
     if (localStorage.getItem('authorization')) { localStorage.removeItem('authorization'); }
     if (sessionStorage.getItem('authorization')) { sessionStorage.removeItem('authorization'); }
+    this.router.navigate(['/login']);
   }
 
   getToken() {
@@ -63,5 +66,11 @@ export class ApiService {
   serverErrorPopup() {
     this.dialog.open(ServerErrorComponent, { width: '330px', maxHeight: 'calc(100vh - 20px)' });
   }
+
+  confirmationPopup() {
+    const reference = this.dialog.open(ConfirmationPopupComponent, { width: `300px`, disableClose: true });
+    return reference.afterClosed();
+  }
+
 
 }
