@@ -8,3 +8,7 @@
 .inner-popup-secondary-text {
   color: var(--inner-popup-secondary-text);
 }
+.default-btn {
+  padding: 7px 0 !important;
+  font-size: 18px !important;
+}

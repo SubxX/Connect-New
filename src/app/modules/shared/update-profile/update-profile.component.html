@@ -1,7 +1,28 @@
-<div class="update-profile-holder">
+<div class="update-profile-holder text-center">
 
-  <p class="font-size-20 inner-popup-primary-text">Update nickname</p>
+  <img src="assets/popup-assets/update-profile.png" clas="img-fluid" />
+  <p class="font-size-20 inner-popup-primary-text mt-4 mb-4">Update nickname</p>
 
+
+  <div class="text-left root-io-holder position-relative mb-1">
+    <div class="default-io-holder position-relative" [class.invalid-io]="tobeupdated.touched && tobeupdated?.errors">
+      <input type="text" class="default-io" [placeholder]="placeHolder" [formControl]="tobeupdated"
+        autocomplete="off" />
+      <i class="fas fa-key"></i>
+    </div>
+    <app-input-errors [control]="tobeupdated"></app-input-errors>
+  </div>
+
+  <div class="text-left root-io-holder position-relative">
+    <div class="default-io-holder position-relative" [class.invalid-io]="pass.touched && pass?.errors">
+      <input type="password" class="default-io" placeholder="Password" [formControl]="pass" />
+      <i class="fas fa-key"></i>
+    </div>
+    <app-input-errors [control]="pass"></app-input-errors>
+  </div>
+
+  <button class="default-btn outline-btn mt-2 mb-2"
+    [disabled]="tobeupdated.status=='INVALID' || pass.status=='INVALID'">NEXT</button>
 
 
 </div>

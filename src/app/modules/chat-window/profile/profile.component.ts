@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.api.popupOpener(UpdateProfileComponent, 400, false);
   }
 
   setTfaPopup(tp) {
@@ -69,7 +68,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.api.popupOpener(SecurityStatusComponent, 330, false, { type: tp });
   }
 
-
+  openEditFormPopup(tp: string) {
+    this.api.popupOpener(UpdateProfileComponent, 350, false, { type: tp });
+  }
 
 
   ngOnDestroy() {
