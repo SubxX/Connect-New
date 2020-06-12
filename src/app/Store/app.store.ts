@@ -3,7 +3,8 @@ import { ActionTypes } from './actions';
 import { User, Event } from './models';
 
 let state: any = {
-  userdetails: {}
+  userdetails: {},
+  onlineUsers: []
 };
 
 export const store = new BehaviorSubject<any>(state);
@@ -17,9 +18,11 @@ dispatcher.subscribe((data: Event) => {
       store.next(state);
       break;
     case ActionTypes.UPDATE_SECURITY:
-      const tempstate = { ...state.userdetails };
-      tempstate.security = data.payload;
-      store.next({ userdetails: { ...state.userdetails, ...tempstate } });
+      store.next({ ...state, userdetails: { ...state.userdetails, security: data.payload } });
+      break;
+    case ActionTypes.INIT_USERS:
+      state.onlineUsers = [...data.payload];
+      store.next(state);
       break;
   }
 });

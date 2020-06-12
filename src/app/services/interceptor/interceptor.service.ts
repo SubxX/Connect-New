@@ -11,7 +11,8 @@ export class InterceptorService implements HttpInterceptor {
   constructor(private api: ApiService) { }
 
   intercept(req, next) {
-    this.api.loaderStateHandeler(true);
+    const urrAr = [...req.url.split('/')];
+    if (!urrAr.includes('chat')) { this.api.loaderStateHandeler(true); }
     const token = this.api.getToken();
     const headersConfig = {};
     if (token) {
@@ -20,7 +21,7 @@ export class InterceptorService implements HttpInterceptor {
     const clone = req.clone({ setHeaders: headersConfig });
     return next.handle(clone)
       .pipe(
-        delay(1000),
+        delay(500),
         finalize(() => this.api.loaderStateHandeler(false))
       );
   }

@@ -13,3 +13,12 @@ export interface Event {
   type: string;
   payload?: any;
 }
+
+export interface Users {
+  _id: string;
+  name: string;
+  nickname: string;
+  gender: string;
+  profilepic: string;
+  lastmessage?: string;
+}
