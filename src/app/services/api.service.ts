@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
 export class ApiService {
   loaderState = new BehaviorSubject<boolean>(false);
 
-  socketUrl = 'http://localhost:3000';
   baseUrl = 'http://localhost:3000/api/';
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private dialog: MatDialog,
+    private router: Router) { }
 
 
   postRequest(url, payload) {

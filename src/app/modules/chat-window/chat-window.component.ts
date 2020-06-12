@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CreateProfilePopupComponent } from '../shared/create-profile-popup/create-profile-popup.component';
 import { store, dispatcher } from '../../Store/app.store';
-import { User } from '../../Store/models';
+import { User, socketUrl, Users } from '../../Store/models';
 import { ActionTypes } from '../../Store/actions';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-chat-window',
@@ -17,6 +17,9 @@ import { Subject } from 'rxjs';
 export class ChatWindowComponent implements OnInit, OnDestroy {
   userData: User;
   private unSubscriber = new Subject();
+  private test = new Subject();
+  socket: any;
+
   constructor(
     private api: ApiService,
     private router: Router
@@ -24,29 +27,36 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     store
       .pipe(takeUntil(this.unSubscriber))
       .subscribe((user: any) => this.userData = user.userdetails);
+    this.socket = io(socketUrl);
   }
 
   ngOnInit(): void {
     this.initUser();
+    this.initOnlineUsers();
+    this.socket.on('onusers', data => dispatcher.next({ type: ActionTypes.UPDATE_ONLINE_USERS, payload: data }));
   }
 
 
   initUser() {
     this.api.getRequest('login/getuserdetails').then((data: User) => {
-      if (!data.name && !data.nickname) {
-        this.api.popupOpener(CreateProfilePopupComponent, 680, true);
-      } else {
+      !data.name && !data.nickname ? this.api.popupOpener(CreateProfilePopupComponent, 680, true) :
         dispatcher.next({ type: ActionTypes.INIT_USER, payload: data });
-      }
+      this.socketLoggedUserEvent();
     }).catch((err) => {
       console.log(err);
       this.api.logOut();
     });
   }
 
-  ngOnDestroy() {
-    this.unSubscriber.next();
-    this.unSubscriber.complete();
+  initOnlineUsers() {
+    this.api.getRequest('chat/getusers')
+      .then((data: Array<Users>) => {
+        dispatcher.next({ type: ActionTypes.INIT_USERS, payload: data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatcher.next({ type: ActionTypes.INIT_USERS, payload: [] });
+      });
   }
 
   leftbarToggle(state) {
@@ -61,7 +71,29 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     }
   }
 
+  socketLoggedUserEvent() {
+    store
+      .pipe(takeUntil(this.test))
+      .subscribe(({ userdetails }) => {
+        if (userdetails._id) {
+          this.socket.emit('LOGGED_IN', { id: userdetails._id });
+          this.test.next();
+          this.test.complete();
+        }
+      });
+  }
+
   noPropagation(e) {
     e.stopPropagation();
   }
+
+  logoutSocketEvent() {
+    this.socket.emit('logout', {});
+  }
+
+  ngOnDestroy() {
+    this.unSubscriber.next();
+    this.unSubscriber.complete();
+  }
+
 }

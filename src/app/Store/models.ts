@@ -22,3 +22,5 @@ export interface Users {
   profilepic: string;
   lastmessage?: string;
 }
+
+export const socketUrl = 'http://localhost:3000';

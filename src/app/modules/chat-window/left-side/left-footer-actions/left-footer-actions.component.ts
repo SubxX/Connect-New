@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
+import { ChatWindowComponent } from '../../chat-window.component';
 
 @Component({
   selector: 'app-left-footer-actions',
@@ -9,7 +10,8 @@ import { ApiService } from '../../../../services/api.service';
 export class LeftFooterActionsComponent implements OnInit {
   dnToggle = false;
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private chat: ChatWindowComponent
   ) { }
 
   ngOnInit(): void {
@@ -18,6 +20,7 @@ export class LeftFooterActionsComponent implements OnInit {
   }
 
   logOut() {
+    this.chat.logoutSocketEvent();
     this.api.logOut();
   }
 

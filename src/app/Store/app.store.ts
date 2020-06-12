@@ -4,7 +4,8 @@ import { User, Event } from './models';
 
 let state: any = {
   userdetails: {},
-  onlineUsers: []
+  onlineUsers: [],
+  onUsers: []
 };
 
 export const store = new BehaviorSubject<any>(state);
@@ -15,6 +16,7 @@ dispatcher.subscribe((data: Event) => {
   switch (data.type) {
     case ActionTypes.INIT_USER:
       state.userdetails = data.payload;
+      state.onUsers = [];
       store.next(state);
       break;
     case ActionTypes.UPDATE_SECURITY:
@@ -23,6 +25,10 @@ dispatcher.subscribe((data: Event) => {
     case ActionTypes.INIT_USERS:
       state.onlineUsers = [...data.payload];
       store.next(state);
+      break;
+    case ActionTypes.UPDATE_ONLINE_USERS:
+      const idsAr = data.payload.map((ids) => ids.id);
+      store.next({ ...state, onUsers: [...idsAr] });
       break;
   }
 });

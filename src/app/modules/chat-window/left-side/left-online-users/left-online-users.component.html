@@ -4,7 +4,8 @@
 
     <div class="user-img position-relative">
       <img [src]="user.profilepic" />
-      <div class="on-state"></div>
+      <div [ngClass]="{'on-state': onlineUsersId.includes(user._id),'off-state': !onlineUsersId.includes(user._id)}">
+      </div>
     </div>
 
     <div class="user-details">

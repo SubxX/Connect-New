@@ -1,12 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { dispatcher, store } from '../../../../Store/app.store';
-import { ActionTypes } from '../../../../Store/actions';
+import { store } from '../../../../Store/app.store';
 import { Users } from '../../../../Store/models';
-import { ApiService } from '../../../../services/api.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { trigger, transition, query, style, stagger, animate, keyframes } from '@angular/animations';
-
 
 @Component({
   selector: 'app-left-online-users',
@@ -36,27 +33,16 @@ import { trigger, transition, query, style, stagger, animate, keyframes } from '
 })
 export class LeftOnlineUsersComponent implements OnInit, OnDestroy {
   onUsers: Array<Users>;
-  unSubscriber = new Subject();
+  onlineUsersId: any;
+  private unSubscriber = new Subject();
 
-  constructor(private api: ApiService) {
+  constructor() {
     store
       .pipe(takeUntil(this.unSubscriber))
-      .subscribe((data) => { this.onUsers = data.onlineUsers; });
+      .subscribe((data) => { this.onUsers = data.onlineUsers; this.onlineUsersId = data.onUsers; });
   }
 
   ngOnInit(): void {
-    this.initUsers();
-  }
-
-  initUsers() {
-    this.api.getRequest('chat/getusers')
-      .then((data: Array<Users>) => {
-        dispatcher.next({ type: ActionTypes.INIT_USERS, payload: data });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.onUsers = [];
-      });
   }
 
   ngOnDestroy() {
