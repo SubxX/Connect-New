@@ -78,6 +78,7 @@ body {
   margin: 0;
 }
 * {
+  outline: none !important;
   font-family: "Poppins", sans-serif !important;
 }
 .font-roboto {

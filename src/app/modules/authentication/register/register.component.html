@@ -27,6 +27,9 @@
 
         <form [formGroup]="registerForm">
 
+          <app-all-alerts [type]="'EXISTS'" [isShown]="registerErr || false" (closeClick)="registerErr=false;">
+          </app-all-alerts>
+
           <div class="text-left root-io-holder position-relative">
             <div class="default-io-holder position-relative default-bg"
               [class.invalid-io]="registerForm.controls.email.touched && registerForm.controls.email?.errors">

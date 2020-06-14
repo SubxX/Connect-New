@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   acceptTOC = false;
+  registerErr = false;
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
@@ -40,9 +41,10 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.registerForm.status === 'VALID') {
+      if (this.registerErr) { this.registerErr = false; }
       this.api.postRequest('register', this.registerForm.value)
         .then(data => this.openEmailVerificationPopUp(this.registerForm.value))
-        .catch(err => console.log(err));
+        .catch(err => { if (err.error === 'exists') { this.registerErr = true; } });
     }
   }
 

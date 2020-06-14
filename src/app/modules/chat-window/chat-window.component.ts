@@ -31,6 +31,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.router.url === '/chatapp') { this.router.navigate(['/chatapp/welcome']); }
     this.initUser();
     this.initOnlineUsers();
     this.socket.on('onusers', data => dispatcher.next({ type: ActionTypes.UPDATE_ONLINE_USERS, payload: data }));
