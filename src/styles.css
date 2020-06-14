@@ -39,6 +39,15 @@
   --left-header-text: #333;
 
   --profile-card-bg: #fff;
+
+  --chat-thread-io-bg: rgb(223, 223, 223);
+  --chat-send-btn: rgba(0, 0, 0, 0.2);
+
+  --receiver-bg: #0cabe5;
+  --receiver-text-color: #fff;
+
+  --sender-bg: #d1d1d1;
+  --sender-text-color: #333;
 }
 
 .darkTheme {
@@ -64,6 +73,15 @@
   --left-header-text: #fff;
 
   --profile-card-bg: #3a3a3a;
+
+  --chat-thread-io-bg: #d1d1d1;
+  --chat-send-btn: rgba(0, 0, 0, 0.5);
+
+  --receiver-bg: #0cabe5;
+  --receiver-text-color: #fff;
+
+  --sender-bg: #d1d1d1;
+  --sender-text-color: #333;
 }
 
 html,

@@ -1,0 +1,43 @@
+.msg-holder {
+  padding: 10px 0;
+}
+.msg-details {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-gap: 15px;
+}
+.msg-details img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-self: end;
+}
+.msg-content {
+  color: var(--sender-text-color);
+  min-width: 200px;
+  max-width: 400px;
+  background: var(--sender-bg);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0;
+  word-break: break-all;
+}
+
+.receiver .msg-details {
+  grid-template-columns: 1fr 40px;
+}
+.receiver .msg-details .msg-content {
+  border-radius: 10px 10px 0 10px;
+  justify-self: end;
+  background: var(--receiver-bg);
+  color: var(--receiver-text-color);
+}
+.msg-time {
+  color: var(--dark-mode-text);
+  font-size: 13px;
+}
+.mr-55px {
+  margin-right: 55px;
+}
+.ml-55px {
+  margin-left: 55px;
+}

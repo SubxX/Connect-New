@@ -1,1 +1,49 @@
-<p>chat-window-child works!</p>
+<div class="msgs-threadroot">
+
+  <div class="common-page-header d-flex justify-content-center align-items-center">
+
+    <div class="page-title d-flex align-items-center">
+
+      <div class="user d-flex align-items-center">
+
+        <div class="user-img position-relative">
+          <img src="assets/default.png" />
+          <div class="on-state"></div>
+        </div>
+
+        <div class="user-details ml-3">
+          <p>Henry Wells</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="chat-threads-holder scroll_style">
+    <!-- <app-message></app-message> -->
+    <app-message [type]="'receiver'"></app-message>
+    <app-message [type]="'sender'"></app-message>
+    <app-message [type]="'receiver'"></app-message>
+    <app-message [type]="'sender'"></app-message>
+    <app-message [type]="'sender'"></app-message>
+    <app-message [type]="'receiver'"></app-message>
+
+  </div>
+
+  <div class="chat-input-holder d-flex justify-content-center align-items-center">
+    <div class="chat-io-holder position-relative">
+      <input type="text" placeholder="Enter message" />
+      <div class="send-chat-btn">
+        <svg width="46" height="29" viewBox="0 0 46 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0.84632 28.9917L45.1877 14.5L0.84632 0.00836182L0.825195 11.2797L32.5127 14.5L0.825195 17.7204L0.84632 28.9917Z"
+            fill-opacity="0.5" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+
+</div>
