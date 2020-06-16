@@ -1,0 +1,98 @@
+::ng-deep mat-dialog-container {
+  background: var(--usr-profiel-bg) !important;
+  border-radius: 0px !important;
+  padding: 0 !important;
+}
+.inner-popup-primary-text {
+  color: var(--inner-popup-text);
+}
+.inner-popup-secondary-text {
+  color: var(--inner-popup-secondary-text);
+}
+.user-profile {
+  width: 100%;
+  height: 300px;
+}
+.user-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-data {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.left-side {
+  background: var(--user-profile-left-panel);
+}
+.left-side div > div {
+  padding: 15px 10px;
+  color: var(--plain-white);
+}
+.left-side div p:last-child {
+  font-size: 12px;
+}
+.right-side {
+  padding: 15px;
+}
+
+.send-msg-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--inner-popup-bg);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+}
+.send-msg-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--user-profile-svg);
+}
+.send-msg-icon:hover {
+  transform: translateY(-5px);
+}
+.height-fixed {
+  max-height: 54px;
+  overflow: hidden;
+}
+.right-side-name p:nth-child(1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 180px;
+  overflow: hidden;
+}
+.on-state,
+.off-state {
+  width: 10px;
+  height: 10px;
+  background: #2fef9e;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.off-state {
+  background: red;
+}
+.arrow {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.arrow svg {
+  stroke: var(--plain-white);
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 700px) {
+  .user-data {
+    grid-template-columns: 1fr;
+  }
+  .left-side > div {
+    display: flex;
+  }
+  .user-profile {
+    width: 100%;
+    height: 200px;
+  }
+}

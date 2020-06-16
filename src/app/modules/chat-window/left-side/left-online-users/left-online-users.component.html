@@ -1,9 +1,9 @@
 <div class="users-holder" [@userlistani]="onUsers.length">
 
-  <div class="user" *ngFor="let user of onUsers">
+  <div class="user" *ngFor="let user of onUsers" (click)="startChat(user, $event)">
 
-    <div class="user-img position-relative">
-      <img [src]="user.profilepic" />
+    <div class="user-img position-relative" (click)="viewUserProfile(user, $event)">
+      <img [src]="user.profilepic ? user.profilepic : 'assets/default.png'" />
       <div [ngClass]="{'on-state': onlineUsersId.includes(user._id),'off-state': !onlineUsersId.includes(user._id)}">
       </div>
     </div>

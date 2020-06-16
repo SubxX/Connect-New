@@ -48,6 +48,10 @@
 
   --sender-bg: #d1d1d1;
   --sender-text-color: #333;
+
+  --usr-profiel-bg: #ffff;
+  --user-profile-left-panel: #9d6ae4;
+  --user-profile-svg: #9d6ae4;
 }
 
 .darkTheme {
@@ -82,6 +86,10 @@
 
   --sender-bg: #d1d1d1;
   --sender-text-color: #333;
+
+  --usr-profiel-bg: #484848;
+  --user-profile-left-panel: #333333;
+  --user-profile-svg: #ffff;
 }
 
 html,
@@ -113,6 +121,12 @@ p {
 }
 .font-weight-600 {
   font-weight: 600;
+}
+.font-size-10 {
+  font-size: 10px;
+}
+.font-size-12 {
+  font-size: 12px;
 }
 .font-size-13 {
   font-size: 13px;

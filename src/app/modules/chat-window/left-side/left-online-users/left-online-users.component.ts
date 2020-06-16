@@ -4,6 +4,10 @@ import { Users } from '../../../../Store/models';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { trigger, transition, query, style, stagger, animate, keyframes } from '@angular/animations';
+import { UserProfilePopupComponent } from '../../../shared/user-profile-popup/user-profile-popup.component';
+import { ApiService } from '../../../../services/api.service';
+import { ChatWindowComponent } from '../../chat-window.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-left-online-users',
@@ -36,7 +40,7 @@ export class LeftOnlineUsersComponent implements OnInit, OnDestroy {
   onlineUsersId: any;
   private unSubscriber = new Subject();
 
-  constructor() {
+  constructor(private api: ApiService, private chatWindow: ChatWindowComponent, private router: Router) {
     store
       .pipe(takeUntil(this.unSubscriber))
       .subscribe((data) => { this.onUsers = data.onlineUsers; this.onlineUsersId = data.onUsers; });
@@ -49,4 +53,17 @@ export class LeftOnlineUsersComponent implements OnInit, OnDestroy {
     this.unSubscriber.next();
     this.unSubscriber.complete();
   }
+
+  viewUserProfile(user, e) {
+    e.stopPropagation();
+    this.chatWindow.leftbarToggle(false);
+    this.api.popupOpener(UserProfilePopupComponent, 400, false, { data: { ...user, on: this.onlineUsersId.includes(user._id) } });
+  }
+
+  startChat(user, e) {
+    e.stopPropagation();
+    this.chatWindow.leftbarToggle(false);
+    this.router.navigate(['/chatapp/chat']);
+  }
+
 }

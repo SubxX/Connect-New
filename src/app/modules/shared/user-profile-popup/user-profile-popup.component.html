@@ -1,0 +1,71 @@
+<div class="user-profile-holder">
+
+  <div class="user-profile position-relative">
+    <img [src]="userData.profilepic ? userData.profilepic :  'assets/default.png'" />
+    <div class="arrow c-pointer" (click)="closePopup()">
+      <svg viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27 14.5H2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14.5 27L2 14.5L14.5 2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="user-data">
+
+    <div class="left-side text-center d-flex align-items-center justify-content-center">
+
+      <div>
+        <div>
+          <p class="font-size-20">0</p>
+          <p>Following</p>
+        </div>
+
+        <div>
+          <p class="font-size-20">0</p>
+          <p>Messages</p>
+        </div>
+
+        <div>
+          <p class="font-size-20">0</p>
+          <p>Conversation</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="right-side">
+
+      <div class="d-flex justify-content-between mb-2">
+        <div class="right-side-name">
+          <p class="inner-popup-primary-text font-size-25">{{userData.name}}</p>
+          <p class="inner-popup-secondary-text font-size-12">Joined 22-05-2020</p>
+          <p class="inner-popup-secondary-text font-size-12">{{userData.gender}}</p>
+        </div>
+
+        <div class="send-msg-icon d-flex justify-content-around align-items-center c-pointer">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 12C18 12.5304 17.7893 13.0391 17.4142 13.4142C17.0391 13.7893 16.5304 14 16 14H4L0 18V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V12Z" />
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="status mb-2">
+        <p class="font-size-15 inner-popup-primary-text">Status</p>
+        <p class="font-size-12 inner-popup-secondary-text height-fixed">
+          {{userData.status ? userData.gender : 'No status added yet'}}
+        </p>
+      </div>
+
+      <div class="active">
+        <p class="font-size-15 inner-popup-primary-text">Active</p>
+        <span class="font-size-12 inner-popup-secondary-text">NOW</span>
+        <span class="on-state ml-2" [class.off-state]="!userData.on"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -12,7 +12,7 @@
   border-radius: 50%;
   align-self: end;
 }
-.msg-content {
+.msg-content p {
   color: var(--sender-text-color);
   min-width: 200px;
   max-width: 400px;
@@ -25,9 +25,8 @@
 .receiver .msg-details {
   grid-template-columns: 1fr 40px;
 }
-.receiver .msg-details .msg-content {
+.receiver .msg-details .msg-content p {
   border-radius: 10px 10px 0 10px;
-  justify-self: end;
   background: var(--receiver-bg);
   color: var(--receiver-text-color);
 }
@@ -40,4 +39,18 @@
 }
 .ml-55px {
   margin-left: 55px;
+}
+.options-icon svg {
+  fill: var(--dark-mode-text);
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+.msg-details:hover .options-icon svg {
+  opacity: 1;
+}
+@media (max-width: 700px) {
+  .msg-content p {
+    width: 95%;
+  }
 }

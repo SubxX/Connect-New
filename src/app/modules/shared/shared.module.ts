@@ -6,13 +6,15 @@ import { CreateProfilePopupComponent } from './create-profile-popup/create-profi
 import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { SecurityStatusComponent } from './security-status/security-status.component';
+import { UserProfilePopupComponent } from './user-profile-popup/user-profile-popup.component';
 
 @NgModule({
   declarations: [
     CreateProfilePopupComponent,
     SecurityTwofaComponent,
     UpdateProfileComponent,
-    SecurityStatusComponent
+    SecurityStatusComponent,
+    UserProfilePopupComponent
   ],
   imports: [
     CommonModule,
@@ -24,13 +26,15 @@ import { SecurityStatusComponent } from './security-status/security-status.compo
     CreateProfilePopupComponent,
     SecurityTwofaComponent,
     UpdateProfileComponent,
-    SecurityStatusComponent
+    SecurityStatusComponent,
+    UserProfilePopupComponent
   ],
   entryComponents: [
     CreateProfilePopupComponent,
     SecurityTwofaComponent,
     UpdateProfileComponent,
-    SecurityStatusComponent
+    SecurityStatusComponent,
+    UserProfilePopupComponent
   ]
 })
 export class SharedModule { }
