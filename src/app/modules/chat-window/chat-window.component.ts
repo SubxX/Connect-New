@@ -6,7 +6,7 @@ import { ActionTypes } from '../../Store/actions';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { takeUntil, take } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import * as io from 'socket.io-client';
 
 @Component({
@@ -16,8 +16,10 @@ import * as io from 'socket.io-client';
 })
 export class ChatWindowComponent implements OnInit, OnDestroy {
   userData: User;
+  chatPerson: any;
   private unSubscriber = new Subject();
   private test = new Subject();
+  refreshEvent: BehaviorSubject<any> = new BehaviorSubject({});
   socket: any;
 
   constructor(
@@ -26,7 +28,14 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   ) {
     store
       .pipe(takeUntil(this.unSubscriber))
-      .subscribe((user: any) => this.userData = user.userdetails);
+      .subscribe((data: any) => { this.userData = data.userdetails; this.chatPerson = data.chat.person; });
+
+    this.refreshEvent
+      .pipe(takeUntil(this.unSubscriber))
+      .subscribe((user: any) => {
+        if (user._id) { this.socket.emit('rereshChat', { receiver: user, sender: this.userData._id }); }
+      });
+
     this.socket = io(socketUrl);
   }
 
@@ -35,6 +44,9 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     this.initUser();
     this.initOnlineUsers();
     this.socket.on('onusers', data => dispatcher.next({ type: ActionTypes.UPDATE_ONLINE_USERS, payload: data }));
+    this.socket.on('refresh', data => {
+      if (this.chatPerson._id === data.sender) { this.api.refreshChat(data.sender, data.receiver); }
+    });
   }
 
 
@@ -56,6 +68,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
       })
       .catch((err) => {
         console.log(err);
+        this.api.serverErrorPopup();
         dispatcher.next({ type: ActionTypes.INIT_USERS, payload: [] });
       });
   }

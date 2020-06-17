@@ -26,8 +26,8 @@
         </div>
 
         <div>
-          <p class="font-size-20">0</p>
-          <p>Conversation</p>
+          <p class="font-size-20">{{userData.chattedwith}}</p>
+          <p>Convos</p>
         </div>
       </div>
 
@@ -35,14 +35,15 @@
 
     <div class="right-side">
 
-      <div class="d-flex justify-content-between mb-2">
+      <div class="d-flex justify-content-between mb-3">
         <div class="right-side-name">
           <p class="inner-popup-primary-text font-size-25">{{userData.name}}</p>
-          <p class="inner-popup-secondary-text font-size-12">Joined 22-05-2020</p>
+          <p class="inner-popup-secondary-text font-size-12">Joined {{userData.registrationDate | date }}
+          </p>
           <p class="inner-popup-secondary-text font-size-12">{{userData.gender}}</p>
         </div>
 
-        <div class="send-msg-icon d-flex justify-content-around align-items-center c-pointer">
+        <div class="send-msg-icon d-flex justify-content-around align-items-center c-pointer" (click)="startChatting()">
           <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M18 12C18 12.5304 17.7893 13.0391 17.4142 13.4142C17.0391 13.7893 16.5304 14 16 14H4L0 18V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V12Z" />
@@ -51,7 +52,7 @@
 
       </div>
 
-      <div class="status mb-2">
+      <div class="status mb-3">
         <p class="font-size-15 inner-popup-primary-text">Status</p>
         <p class="font-size-12 inner-popup-secondary-text height-fixed">
           {{userData.status ? userData.gender : 'No status added yet'}}

@@ -23,6 +23,7 @@
   grid-template-columns: 1fr 3fr;
 }
 .left-side {
+  padding: 20px 0;
   background: var(--user-profile-left-panel);
 }
 .left-side div > div {
@@ -33,7 +34,7 @@
   font-size: 12px;
 }
 .right-side {
-  padding: 15px;
+  padding: 20px 15px;
 }
 
 .send-msg-icon {

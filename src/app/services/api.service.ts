@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ServerErrorComponent } from '../modules/shared-common/server-error/server-error.component';
 import { ConfirmationPopupComponent } from '../modules/shared-common/confirmation-popup/confirmation-popup.component';
 import { Router } from '@angular/router';
+import { dispatcher } from '../Store/app.store';
+import { ActionTypes } from '../Store/actions';
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +77,28 @@ export class ApiService {
     return reference.afterClosed();
   }
 
+  refreshChat(senderID, receiver) {
+    this.getRequest(`chat/getmessages/${senderID}/${receiver._id}`)
+      .then((data) => {
+        console.log(data);
+        dispatcher.next({ type: ActionTypes.UPDATE_CHAT_ARRAY_RECEIVER, payload: data });
+      })
+      .catch((err) => { this.serverErrorPopup(); });
+  }
+
+  resetChatPerson() {
+    dispatcher.next({ type: ActionTypes.UPDATE_CHAT, payload: { person: {}, messages: [] } });
+  }
+
+  initChatPerson(user, currentUserId) {
+    this.loaderStateHandeler(true);
+    this.getRequest(`chat/getmessages/${currentUserId}/${user._id}`)
+      .then((data) => {
+        dispatcher.next({ type: ActionTypes.UPDATE_CHAT, payload: { person: user, messages: data } });
+        this.router.navigate(['/chatapp/chat']);
+        this.loaderStateHandeler(false);
+      })
+      .catch((err) => { console.log(err); this.loaderStateHandeler(false); this.serverErrorPopup(); });
+  }
 
 }

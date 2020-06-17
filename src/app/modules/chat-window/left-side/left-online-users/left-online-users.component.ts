@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { store } from '../../../../Store/app.store';
+import { store, dispatcher } from '../../../../Store/app.store';
+import { ActionTypes } from '../../../../Store/actions';
 import { Users } from '../../../../Store/models';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -38,32 +39,45 @@ import { Router } from '@angular/router';
 export class LeftOnlineUsersComponent implements OnInit, OnDestroy {
   onUsers: Array<Users>;
   onlineUsersId: any;
+  currentUserId: any;
+
+  currentChatPersonId: any;
   private unSubscriber = new Subject();
 
-  constructor(private api: ApiService, private chatWindow: ChatWindowComponent, private router: Router) {
+  constructor(private api: ApiService, private cWindow: ChatWindowComponent, private router: Router) {
     store
       .pipe(takeUntil(this.unSubscriber))
-      .subscribe((data) => { this.onUsers = data.onlineUsers; this.onlineUsersId = data.onUsers; });
+      .subscribe((data) => {
+        this.currentUserId = data.userdetails._id;
+        this.onUsers = data.onlineUsers; this.onlineUsersId = data.onUsers;
+        this.currentChatPersonId = data.chat.person._id;
+      });
   }
 
   ngOnInit(): void {
   }
 
+  viewUserProfile(user, e) {
+    e.stopPropagation();
+    this.cWindow.leftbarToggle(false);
+    this.api.popupOpener(UserProfilePopupComponent, 400, false,
+      { data: { ...user, on: this.onlineUsersId.includes(user._id) }, currentUser: this.currentUserId }
+    );
+  }
+
+  startChat(e, clickable, user) {
+    if (!clickable) {
+      e.stopPropagation();
+      this.api.initChatPerson(user, this.currentUserId);
+      this.cWindow.leftbarToggle(false);
+    } else {
+      return;
+    }
+  }
+
   ngOnDestroy() {
     this.unSubscriber.next();
     this.unSubscriber.complete();
-  }
-
-  viewUserProfile(user, e) {
-    e.stopPropagation();
-    this.chatWindow.leftbarToggle(false);
-    this.api.popupOpener(UserProfilePopupComponent, 400, false, { data: { ...user, on: this.onlineUsersId.includes(user._id) } });
-  }
-
-  startChat(user, e) {
-    e.stopPropagation();
-    this.chatWindow.leftbarToggle(false);
-    this.router.navigate(['/chatapp/chat']);
   }
 
 }

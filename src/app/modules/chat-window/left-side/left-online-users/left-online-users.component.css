@@ -10,6 +10,7 @@
   background: var(--user-active-state);
 }
 .user.active-user {
+  pointer-events: none;
   background: var(--user-active-state);
 }
 .user-img {

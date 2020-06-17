@@ -1,6 +1,7 @@
 <div class="users-holder" [@userlistani]="onUsers.length">
 
-  <div class="user" *ngFor="let user of onUsers" (click)="startChat(user, $event)">
+  <div class="user" *ngFor="let user of onUsers" (click)="startChat($event,currentChatPersonId == user._id,user)"
+    [class.active-user]="currentChatPersonId == user._id">
 
     <div class="user-img position-relative" (click)="viewUserProfile(user, $event)">
       <img [src]="user.profilepic ? user.profilepic : 'assets/default.png'" />

@@ -35,4 +35,9 @@ export class LeftFooterActionsComponent implements OnInit {
     }
   }
 
+  resetChatPerson() {
+    this.chat.leftbarToggle(false);
+    this.api.resetChatPerson();
+  }
+
 }

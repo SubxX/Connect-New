@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LeftSearchBarComponent } from './left-side/left-search-bar/left-search-bar.component';
 import { LeftOnlineUsersComponent } from './left-side/left-online-users/left-online-users.component';
 import { LeftFooterActionsComponent } from './left-side/left-footer-actions/left-footer-actions.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LeftFooterActionsComponent } from './left-side/left-footer-actions/left
     ChatWindowRoutingModule,
     SharedModule,
     SharedCommonModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ]
 })
 export class ChatWindowModule { }

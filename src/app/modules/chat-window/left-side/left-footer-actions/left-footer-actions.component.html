@@ -9,7 +9,7 @@
   <div class="acts-holders d-flex justify-content-end align-items-center">
 
     <div class="action-btns profile d-flex justify-content-center align-items-center"
-      [routerLink]="['/chatapp/profile']">
+      [routerLink]="['/chatapp/profile']" (click)="resetChatPerson()">
       <svg viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M22 26V23.2222C22 21.7488 21.4469 20.3357 20.4623 19.2939C19.4777 18.252 18.1424 17.6667 16.75 17.6667H6.25C4.85761 17.6667 3.52226 18.252 2.53769 19.2939C1.55312 20.3357 1 21.7488 1 23.2222V26"
@@ -19,14 +19,6 @@
           stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </div>
-
-    <!-- <div class="action-btns plus d-flex justify-content-center align-items-center">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 1V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M1 11H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-
-    </div> -->
 
     <div class="action-btns logout d-flex justify-content-center align-items-center" (click)="logOut()">
       <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

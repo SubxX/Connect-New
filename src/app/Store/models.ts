@@ -21,6 +21,8 @@ export interface Users {
   gender: string;
   profilepic: string;
   lastmessage?: string;
+  chattedwith: number;
+  registrationDate: Date;
 }
 
 export const socketUrl = 'http://localhost:3000';

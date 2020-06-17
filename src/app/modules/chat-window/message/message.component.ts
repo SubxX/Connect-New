@@ -6,11 +6,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  @Input() type: string;
+  @Input() msg: any;
+  @Input() currentUser: any;
+  @Input() receiverUser: any;
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.type);
   }
-
 }
