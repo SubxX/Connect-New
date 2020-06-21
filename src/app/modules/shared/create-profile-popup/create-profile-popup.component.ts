@@ -14,7 +14,10 @@ export class CreateProfilePopupComponent implements OnInit {
   ddOpen = false;
   fname: any;
   profileForm: FormGroup;
-  profilePic: string;
+  profilePic: any;
+
+  formData = new FormData();
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateProfilePopupComponent>,
@@ -35,12 +38,13 @@ export class CreateProfilePopupComponent implements OnInit {
   }
 
   onFileChange(e) {
-    const formData = new FormData();
     const img = e.target.files[0];
-    formData.append('files', img);
-    this.api.postRequest('register/uploadprofilepic', formData)
-      .then((pic: any) => this.profilePic = pic.profilepic)
-      .catch(err => console.log(err));
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      this.profilePic = ev.target.result;
+    };
+    reader.readAsDataURL(img);
+    this.formData.has('image') ? this.formData.set('image', img) : this.formData.append('image', img);
   }
 
   selectGender(gender) {
@@ -48,16 +52,15 @@ export class CreateProfilePopupComponent implements OnInit {
     this.ddOpen = false;
   }
 
+
   submit() {
-    console.log(this.profileForm.status);
     const { firstname, lastname, nickname, gender } = this.profileForm.value;
     const updatedOBJ = { name: `${firstname} ${lastname}`, gender, nickname };
-    this.api.postRequest('register/createprofile', updatedOBJ).then(
-      data => dispatcher.next({ type: ActionTypes.INIT_USER, payload: data }),
-      err => console.log(err)
-    );
-    this.dialogRef.close();
+    this.formData.has('data') ? this.formData.set('data', JSON.stringify(updatedOBJ))
+      : this.formData.append('data', JSON.stringify(updatedOBJ));
+    this.api.postRequest('register/createprofile', this.formData)
+      .then(data => { dispatcher.next({ type: ActionTypes.INIT_USER, payload: data }); this.dialogRef.close(); })
+      .catch(err => console.log(err));
   }
-
 
 }

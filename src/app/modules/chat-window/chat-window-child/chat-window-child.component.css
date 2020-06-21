@@ -7,6 +7,9 @@
   max-height: 84%;
   overflow-y: auto;
 }
+.smoothscroll {
+  scroll-behavior: smooth;
+}
 .chat-input-holder {
   min-height: 8%;
   max-height: 8%;

@@ -11,11 +11,11 @@
 
     <div class="user-details">
       <p>{{user.name}}</p>
-      <p>this is a message </p>
+      <p>{{user.lastmessage}}</p>
     </div>
 
-    <div class="unseen-message text-center">
-      <p>9+</p>
+    <div class="unseen-message text-center" *ngIf="user.newmsgCount  &&  user.newmsgCount!=0">
+      <p>{{ user.newmsgCount > 9 ? '9+' : user.newmsgCount}}</p>
     </div>
 
   </div>

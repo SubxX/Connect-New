@@ -113,6 +113,9 @@ body {
 p {
   margin: 0;
 }
+::ng-deep mat-dialog-container {
+  padding: 20px 0;
+}
 .pall-20 {
   padding: 20px;
 }

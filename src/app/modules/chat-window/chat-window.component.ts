@@ -5,7 +5,7 @@ import { User, socketUrl, Users } from '../../Store/models';
 import { ActionTypes } from '../../Store/actions';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { takeUntil, take } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 import * as io from 'socket.io-client';
 
@@ -32,8 +32,10 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
     this.refreshEvent
       .pipe(takeUntil(this.unSubscriber))
-      .subscribe((user: any) => {
-        if (user._id) { this.socket.emit('rereshChat', { receiver: user, sender: this.userData._id }); }
+      .subscribe((data: any) => {
+        if (Object.keys(data).length > 0) {
+          this.socket.emit('rereshChat', { receiver: data.person, sender: this.userData._id, msg: data.newmsg });
+        }
       });
 
     this.socket = io(socketUrl);
@@ -45,7 +47,13 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     this.initOnlineUsers();
     this.socket.on('onusers', data => dispatcher.next({ type: ActionTypes.UPDATE_ONLINE_USERS, payload: data }));
     this.socket.on('refresh', data => {
-      if (this.chatPerson._id === data.sender) { this.api.refreshChat(data.sender, data.receiver); }
+      if (this.chatPerson._id === data.sender) {
+        this.api.refreshChat(data.sender, data.receiver);
+        this.playAudio();
+      } else if (data.receiver._id === this.userData._id) {
+        dispatcher.next({ type: ActionTypes.UPDATE_LAST_MESSAGE, payload: { sender: data.sender, msg: data.msg.msgBody } });
+        this.playAudio();
+      }
     });
   }
 
@@ -103,6 +111,12 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
   logoutSocketEvent() {
     this.socket.emit('logout', {});
+  }
+
+  playAudio() {
+    const tone: any = document.getElementById('msgTone');
+    tone.load();
+    tone.play();
   }
 
   ngOnDestroy() {

@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { store, dispatcher } from '../../../Store/app.store';
 import { ActionTypes } from '../../../Store/actions';
 import { Users } from '../../../Store/models';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ChatWindowComponent } from '../chat-window.component';
@@ -13,7 +13,7 @@ import { ChatWindowComponent } from '../chat-window.component';
   templateUrl: './chat-window-child.component.html',
   styleUrls: ['./chat-window-child.component.css']
 })
-export class ChatWindowChildComponent implements OnInit, OnDestroy {
+export class ChatWindowChildComponent implements OnInit, OnDestroy, AfterViewInit {
   private unSubscriber = new Subject();
   msg: any;
   currentUserId: any;
@@ -23,7 +23,7 @@ export class ChatWindowChildComponent implements OnInit, OnDestroy {
   chatMessages: any;
   onlineUsers: any;
 
-  msgDebouse = new Subject();
+  scrollSmooth = false;
 
   constructor(private router: Router, private api: ApiService, private cWindow: ChatWindowComponent) {
     store
@@ -32,18 +32,27 @@ export class ChatWindowChildComponent implements OnInit, OnDestroy {
         if (!chat.person._id) { this.router.navigate(['/chatapp/welcome']); }
         this.currentUserId = userdetails._id;
         this.currentUser = userdetails;
-
         this.chatPerson = chat.person;
         this.chatMessages = chat.messages;
         this.onlineUsers = onUsers;
       });
+
   }
 
   ngOnInit(): void {
   }
 
+  ngAfterViewInit() {
+    this.api.scrollEv
+      .pipe(takeUntil(this.unSubscriber))
+      .subscribe((data) => {
+        data === 'new' ? this.scrollSmooth = false : this.scrollSmooth = true;
+        this.scrollFunc();
+      });
+  }
 
   sendMessage() {
+    this.scrollSmooth = true;
     if (this.msg) {
       const payload = {
         senderId: this.currentUserId,
@@ -53,11 +62,18 @@ export class ChatWindowChildComponent implements OnInit, OnDestroy {
       this.api.postRequest(`chat`, payload)
         .then((data) => {
           dispatcher.next({ type: ActionTypes.UPDATE_CHAT_ARRAY_SENDER, payload: data });
-          this.cWindow.refreshEvent.next(this.chatPerson);
+          this.cWindow.refreshEvent.next({ person: this.chatPerson, newmsg: data });
           this.msg = '';
+          this.scrollFunc();
         })
         .catch((err) => { console.log(err); });
     } else { return false; }
+  }
+
+  scrollFunc() {
+    setTimeout(() => {
+      document.querySelector('.chat-threads-holder').scrollTop = document.querySelector('.chat-threads-holder').scrollHeight;
+    }, 10);
   }
 
   detectEnter(e) {

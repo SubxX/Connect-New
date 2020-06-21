@@ -12,13 +12,18 @@
 
       <div class="d-flex justify-content-center align-items-center mb-3">
         <div class="profile-pic position-relative">
-          <img [src]="profilePic ? profilePic : 'assets/default.png'" [class.profile-img-exists]="profilePic" />
+          <img [src]="profilePic ? profilePic : 'assets/default.png'" />
           <div class="edit-vector c-pointer" (click)="file.click()">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M15.1298 0.835595C15.3947 0.570679 15.7092 0.360536 16.0553 0.217164C16.4015 0.0737923 16.7725 2.79135e-09 17.1471 0C17.5217 -2.79135e-09 17.8927 0.0737923 18.2389 0.217164C18.585 0.360536 18.8995 0.570679 19.1644 0.835595C19.4293 1.10051 19.6395 1.41501 19.7828 1.76114C19.9262 2.10727 20 2.47825 20 2.8529C20 3.22755 19.9262 3.59853 19.7828 3.94466C19.6395 4.29079 19.4293 4.60529 19.1644 4.87021L5.54759 18.487L0 20L1.51298 14.4524L15.1298 0.835595Z"
-                fill="#fff" />
+                d="M23 17C23 17.5304 22.7893 18.0391 22.4142 18.4142C22.0391 18.7893 21.5304 19 21 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V6C1 5.46957 1.21071 4.96086 1.58579 4.58579C1.96086 4.21071 2.46957 4 3 4H7L9 1H15L17 4H21C21.5304 4 22.0391 4.21071 22.4142 4.58579C22.7893 4.96086 23 5.46957 23 6V17Z"
+                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M12 15C14.2091 15 16 13.2091 16 11C16 8.79086 14.2091 7 12 7C9.79086 7 8 8.79086 8 11C8 13.2091 9.79086 15 12 15Z"
+                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
+
           </div>
           <input type="file" hidden #file (change)="onFileChange($event)" />
         </div>
@@ -74,8 +79,7 @@
       </form>
 
       <div class="d-flex justify-content-center align-items-center">
-        <button class="save-btn" (click)="submit()"
-          [disabled]="profileForm.status ==='INVALID'|| !profilePic ">SAVE</button>
+        <button class="save-btn" (click)="submit()" [disabled]="profileForm.status ==='INVALID'">SAVE</button>
       </div>
 
     </div>

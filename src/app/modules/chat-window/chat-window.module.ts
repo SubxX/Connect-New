@@ -18,6 +18,7 @@ import { LeftSearchBarComponent } from './left-side/left-search-bar/left-search-
 import { LeftOnlineUsersComponent } from './left-side/left-online-users/left-online-users.component';
 import { LeftFooterActionsComponent } from './left-side/left-footer-actions/left-footer-actions.component';
 import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     SharedCommonModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
   ]
 })
 export class ChatWindowModule { }

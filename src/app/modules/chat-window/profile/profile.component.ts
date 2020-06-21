@@ -72,6 +72,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.api.popupOpener(UpdateProfileComponent, 350, false, { type: tp });
   }
 
+  updateProfilePic(e) {
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    this.api.postRequest('register/updateprofilepic', formData)
+      .then((data: any) => { dispatcher.next({ type: ActionTypes.UPDATE_PROFILEPIC, payload: data }); })
+      .catch(err => console.log(err));
+  }
 
   ngOnDestroy() {
     this.unSubscriber.next();

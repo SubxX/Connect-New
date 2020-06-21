@@ -23,6 +23,7 @@ export interface Users {
   lastmessage?: string;
   chattedwith: number;
   registrationDate: Date;
+  newmsgCount?: number;
 }
 
 export const socketUrl = 'http://localhost:3000';

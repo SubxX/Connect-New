@@ -31,7 +31,7 @@ export class EmailVerificationPopupComponent implements OnInit {
     if (this.code.status === 'VALID') {
       this.api.postRequest('register/verification', { email: this.data.email, emailValid: this.code.value })
         .then((data) => {
-          this.dialogRef.close();
+          this.dialogRef.close(true);
           this.router.navigate(['/login']);
         })
         .catch(err => this.code.setErrors({ invalid: 'Invalid Code' }));

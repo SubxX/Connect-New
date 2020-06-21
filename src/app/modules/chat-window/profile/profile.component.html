@@ -28,7 +28,7 @@
         </div>
 
         <div class="profile-pic-holder mt-4 position-relative">
-          <img [src]="currentUser.profilepic" />
+          <img [src]="currentUser.profilepic ? currentUser.profilepic :'assets/default.png'" />
           <div class="edit-vector c-pointer" (click)="file.click()">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -36,7 +36,7 @@
                 fill="#fff" />
             </svg>
           </div>
-          <input type="file" #file hidden />
+          <input type="file" #file hidden (change)="updateProfilePic($event)" />
         </div>
 
         <div class="edit-form mt-4 font-size-13">

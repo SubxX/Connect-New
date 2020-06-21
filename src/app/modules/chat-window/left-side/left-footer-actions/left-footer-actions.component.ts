@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { ChatWindowComponent } from '../../chat-window.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-left-footer-actions',
@@ -11,7 +12,8 @@ export class LeftFooterActionsComponent implements OnInit {
   dnToggle = false;
   constructor(
     private api: ApiService,
-    private chat: ChatWindowComponent
+    private chat: ChatWindowComponent,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class LeftFooterActionsComponent implements OnInit {
   resetChatPerson() {
     this.chat.leftbarToggle(false);
     this.api.resetChatPerson();
+    this.router.navigate(['/chatapp/profile']);
   }
 
 }

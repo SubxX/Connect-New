@@ -10,8 +10,10 @@ export class MessageComponent implements OnInit {
   @Input() currentUser: any;
   @Input() receiverUser: any;
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 }

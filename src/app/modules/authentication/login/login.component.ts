@@ -4,6 +4,7 @@ import { ForgotPasswordPopupComponent } from '../../shared-public/forgot-passwor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
+import { EmailVerificationPopupComponent } from '../../shared-public/email-verification-popup/email-verification-popup.component';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,10 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch((err: any) => {
-        if (err.error.auth_method) {
+        if (err.error.verificationdue) {
+          this.api.popupOpener(EmailVerificationPopupComponent, 680, true, this.loginForm.value, true)
+            .subscribe(state => { if (state) { this.login(); } });
+        } else if (err.error.auth_method) {
           this.openAuthenticationPopUp(err.error.auth_method, this.loginForm.controls.email.value);
         } else { this.loginErr = true; }
       });

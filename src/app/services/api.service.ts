@@ -13,6 +13,7 @@ import { ActionTypes } from '../Store/actions';
 })
 export class ApiService {
   loaderState = new BehaviorSubject<boolean>(false);
+  scrollEv = new BehaviorSubject<string>('');
 
   baseUrl = 'http://localhost:3000/api/';
 
@@ -58,14 +59,15 @@ export class ApiService {
     this.loaderState.next(state);
   }
 
-  popupOpener(component: any, wdth: number, closable: boolean, passedData?: any) {
+  popupOpener(component: any, wdth: number, closable: boolean, passedData?: any, needRef?: boolean) {
     const opts: any = {
       width: `${wdth}px`,
       disableClose: closable,
       maxHeight: 'calc(100vh - 20px)',
       data: passedData ? passedData : {}
     };
-    this.dialog.open(component, opts);
+    const ref = this.dialog.open(component, opts);
+    if (needRef) { return ref.afterClosed(); } else { return; }
   }
 
   serverErrorPopup() {
@@ -82,6 +84,7 @@ export class ApiService {
       .then((data) => {
         console.log(data);
         dispatcher.next({ type: ActionTypes.UPDATE_CHAT_ARRAY_RECEIVER, payload: data });
+        this.scrollEv.next('refresh');
       })
       .catch((err) => { this.serverErrorPopup(); });
   }
@@ -96,6 +99,7 @@ export class ApiService {
       .then((data) => {
         dispatcher.next({ type: ActionTypes.UPDATE_CHAT, payload: { person: user, messages: data } });
         this.router.navigate(['/chatapp/chat']);
+        this.scrollEv.next('new');
         this.loaderStateHandeler(false);
       })
       .catch((err) => { console.log(err); this.loaderStateHandeler(false); this.serverErrorPopup(); });

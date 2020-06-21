@@ -21,7 +21,7 @@
 
   </div>
 
-  <div class="chat-threads-holder scroll_style">
+  <div class="chat-threads-holder scroll_style position-relative" [class.smoothscroll]="scrollSmooth">
 
     <ng-container *ngFor="let msgs of chatMessages">
       <app-message [msg]="msgs" [currentUser]="currentUser" [receiverUser]="chatPerson"></app-message>
